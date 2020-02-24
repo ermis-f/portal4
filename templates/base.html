@@ -1,0 +1,35 @@
+{% extends "ermis_base.html" %}
+
+{% load i18n %}
+{% load staticfiles %}
+
+{% block ermis_styles %}
+{{ block.super }}
+{% block styles %}
+{% endblock styles %}
+ 
+{% endblock ermis_styles %}
+
+ {% block ermis_apps %}
+                                <li class="menu-item-has-children dropdown"><a href="https://ermis-f.eu" class="js-activated btn btn-highlight" ><i class="icon-home"></i>{% trans "ERMIS-F" %}<span class="caret"></span></a>
+                                    <ul role="menu" class="dropdown-menu sub-menu pull-left">
+                                       
+                                        <li><a href="https://geoportal.ermis-f.eu/static_maps/cyprus.html" ><i class="icon-streamline-filter-picture"></i>{% trans "Flood Maps" %}</a></li>
+                                           <li><a href="https://kb.ermis-f.eu/" ><i class="icon-streamline-school-graduation"></i>{% trans "Knowledge Base" %}</a></li>
+					<li><a href="https://cr.ermis-f.eu/" ><i class="icon-streamline-compatible-devices"></i>{% trans "Crowdsourcing" %}</a></li>
+                                      <li><a href="https://geoportal.ermis-f.eu/" ><i class="icon-streamline-group-global"></i>{% trans "GIS Portal" %}</a></li>
+					
+					<li><a href="https://sm.ermis-f.eu/" ><i class="icon-streamline-friends"></i>{% trans "Social Media" %}</a></li>
+                                        
+                                    </ul>
+                                </li>
+       {% endblock ermis_apps %}
+
+   {% block ermis_app_menu %}
+{% endblock ermis_app_menu %}
+    
+{% block ermis_content %}
+{% block content %} {% endblock content %}
+{% endblock ermis_content %}
+
+

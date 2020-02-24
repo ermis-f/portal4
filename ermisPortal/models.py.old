@@ -1,0 +1,62 @@
+
+# Create your models here.
+#from django.contrib.auth.models import User, UserManager
+
+#class ErmisUser(User):
+#    """User with app settings."""
+#    gn_is_active = models.BooleanField(null=False, blank=False)
+#    gn_is_staff = models.BooleanField(null=False, blank=False)
+#    gn_is_superuser = models.BooleanField(null=False, blank=False)
+#    kb_is_active = models.BooleanField(null=False, blank=False)
+#    kb_is_staff = models.BooleanField(null=False, blank=False)
+#    kb_is_superuser = models.BooleanField(null=False, blank=False)
+    # Use UserManager to get the create_user method, etc.
+#    objects = UserManager()
+
+
+
+from __future__ import unicode_literals
+from django.db import models
+from django.core.mail import send_mail
+from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.base_user import AbstractBaseUser
+from django.utils.translation import ugettext_lazy as _
+
+from .managers import UserManager
+
+
+class User(AbstractBaseUser, PermissionsMixin):
+    #is_active = models.BooleanField(_('active'), default=True)
+    gn_is_active = models.BooleanField(default=False)
+    gn_is_staff = models.BooleanField(default=False)
+    gn_is_superuser = models.BooleanField(default=False)
+    kb_is_active = models.BooleanField(default=False)
+    kb_is_staff = models.BooleanField(default=False)
+    kb_is_superuser = models.BooleanField(default=False)
+
+    objects = UserManager()
+
+    REQUIRED_FIELDS = []
+
+    class Meta:
+        verbose_name = _('user')
+        verbose_name_plural = _('users')
+
+    def get_full_name(self):
+        '''
+        Returns the first_name plus the last_name, with a space in between.
+        '''
+        full_name = '%s %s' % (self.first_name, self.last_name)
+        return full_name.strip()
+
+    def get_short_name(self):
+        '''
+        Returns the short name for the user.
+        '''
+        return self.first_name
+
+    def email_user(self, subject, message, from_email=None, **kwargs):
+        '''
+        Sends an email to this User.
+        '''
+        send_mail(subject, message, from_email, [self.email], **kwargs)

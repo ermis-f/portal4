@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load staticfiles %}
+
+<html>
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="description" content="ERMIS-F application">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+
+  <title>{% block ermis_title %}ERMIS-F{% endblock ermis_title %}</title>
+
+  <link rel="shortcut icon" href="{% static "img/Ermis_ico32x32.png" %}" type="image/x-icon">
+
+  <link rel="stylesheet" href="{% static "css/bootstrap.min.css" %}">
+  <link rel="stylesheet" href="{% static "css/dropdown_style.css" %}">
+  <link rel="stylesheet" href="{% static "css/animate.min.css" %}">
+  <link rel="stylesheet" href="{% static "css/mobirise_style.css" %}">
+  <link rel="stylesheet" href="{% static "css/mbr-additional.css" %}" type="text/css">
+  <link rel="stylesheet" href="{% static "css/ermis.css" %}">
+
+  {% block ermis_styles %} {% endblock ermis_styles %}
+
+</head>
+
+<body {% block ermis_body_attributes %} {% endblock ermis_body_attributes %}>
+
+  <header class="menu cid-qTkzRZLJNu" once="menu" id="menu1-0">
+    <nav class="navbar navbar-expand beta-menu navbar-dropdown align-items-center navbar-fixed-top navbar-toggleable-sm">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </button>
+        <div class="menu-logo">
+            <div class="navbar-brand">
+                <span class="navbar-logo">
+                    <a href="https://ermis-f.eu">
+                         <img src="{% static "img/logoermislong2-708x153.png" %}" alt="Mobirise" title="" style="height: 3.8rem;">
+                    </a>
+                </span>
+
+            </div>
+        </div>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        {% block ermis_main_menu %}
+            <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+                <li class="nav-item">
+                    <a class="nav-link link text-warning display-4" href="https://#">
+                        Item 1
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link link text-warning dropdown-toggle display-4" href="https://#" data-toggle="dropdown-submenu" aria-expanded="false">
+                        Item 2
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="text-warning dropdown-item display-4" href="https://#">Submenu Item 1</a>
+                        <a class="text-warning dropdown-item display-4" href="https://#">Submenu Item 2</a>
+                    </div>
+                </li>
+            </ul>
+        {% endblock ermis_main_menu %}
+            <span class="navbar-buttons mbr-section-btn">
+                <a class="btn btn-sm btn-primary display-4" href="popup:#mbr-popup-k" data-toggle="modal" data-target="#mbr-popup-k">
+                  <img src="{% static "img/conect2.png" %}" align="left" alt="Connect" height="20" />
+                  - Σύνδεση
+                </a>
+            </span>
+        </div>
+    </nav>
+  </header>
+
+
+  <div class="container ermis-content">
+    {% block ermis_content %}
+
+    <h1> Heading 1</h1>
+    <h2> Heading 2</h2>
+    <h3> Heading 3</h3>
+    <h4> Heading 4</h4>
+    <h5> Heading 5</h5>
+    <p>Paragraph</p>
+    <p><a href="">Link</a></p>
+    <ul>
+    <li> unsorted list </li>
+    <li> unsorted list </li>
+    <li> unsorted list </li>
+    <li> unsorted list </li>
+    <li> unsorted list </li>
+    </ul>
+    <br>
+    <div> Hello 10 </div>
+    <div> Hello 9 </div>
+    <div> Hello 8 </div>
+    <div> Hello 7 </div>
+    <div> Hello 6 </div>
+    <div> Hello 5 </div>
+    <div> Hello 4 </div>
+    <div> Hello 3 </div>
+    <div> Hello 2 </div>
+    <div> Hello 1 </div>
+
+    {% endblock ermis_content %}
+  </div>
+
+
+
+
+  <footer>
+      <section once="footers" class="cid-rxxDMDsYMV" id="footer6-5">
+        <div class="container">
+          <div class="media-container-row align-left mbr-white">
+            <div class="col-12">
+                <p class="mbr-text mb-0 mbr-fonts-style display-7">
+                    <img src="{% static "img/interreg-greece-cyprus-logo-negative-192x105.png" %}" align="left" alt="Interreg Greece-Cyprus logo" width="92" height="50" />
+                </p>
+                <p style="font-size: 12px;">
+                    Η δημιουργία της ιστοσελίδας συγχρηματοδοτείται από την Ευρωπαϊκή Ένωση (Ε.Τ.Π.Α.)
+                    και από Εθνικούς πόρους της Ελλάδας και της Κύπρου. Το περιεχόμενο της ιστοσελίδας
+                    αποτελεί αποκλειστική ευθύνη του ονόματος του δικαιούχου και δεν μπορεί σε καμία
+                    περίπτωση να αντικατοπτρίζει τις απόψεις της Ευρωπαϊκής Ένωσης, των συμμετεχουσών
+                    χωρών και της Διαχειριστικής Αρχής.
+                </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cid-rxxsIK2ASu" id="footer5-3">
+        <div class="container">
+
+          <div class="media-container-row">
+              <div class="col-md-3">
+              </div>
+          </div>
+
+          <div class="footer-lower">
+
+              <div class="col-md-12">
+                  &nbsp;
+              </div>
+
+              <div class="media-container-row mbr-white">
+                  <div class="col-md-6 ">
+                      <p <style="color: white;">
+                          © Copyright 2019 Ermis-F - All Rights Reserved
+                      </p>
+                  </div>
+
+                  <div class="col-md-6">
+                      <div class="social-list align-right">
+                        <div class="soc-item">
+                          <a href="https://twitter.com/" target="_blank">
+                              <img src="{% static "img/tweetericon.png" %}" align="left" alt="" height="30" />
+                          </a>
+                        </div>
+                        <div class="soc-item">
+                          <a href="https://www.facebook.com/" target="_blank">
+                              <img src="{% static "img/facebookicon.png" %}" align="left" alt="" height="30" />
+                          </a>
+                        </div>
+                        <div class="soc-item">
+                          <a href="https://www.youtube.com/" target="_blank">
+                              <img src="{% static "img/youtubeicon.png" %}" align="left" alt="" height="30" />
+                          </a>
+                        </div>
+                        <div class="soc-item">
+                          <a href="https://instagram.com/" target="_blank">
+                              <img src="{% static "img/instagramicon.png" %}" align="left" alt="" height="30" />
+                          </a>
+                        </div>
+                        <div class="soc-item">
+                          <a href="https://linkedin/" target="_blank">
+                              <img src="{% static "img/linkedinicon.png" %}" align="left" alt="" height="30" />
+                          </a>
+                        </div>
+                      </div>
+                  </div>
+              </div> <!-- class="media-container-row mbr-white" -->
+
+            </div> <!--class="footer-lower"-->
+        </div> <!--class="container"-->
+      </section>
+  </footer>
+
+
+  <div class="modal mbr-popup cid-rqmuJQjSvG fade" tabindex="-1" role="dialog" data-overlay-color="#000000" data-overlay-opacity="0.8" id="mbr-popup-k" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title w-100 align-center mbr-fonts-style display-5">ERMIS-F Εφαρμογές</h5>
+
+            </div>
+
+            <div class="modal-body">
+                <p class="mbr-text align-center mbr-fonts-style display-7">
+                   <a href="http://geoportal.ermis-f.eu/">Γεωπύλη</a><br>
+                   <a href="https://geoportal.ermis-f.eu/static_maps/cyprus.html">Πλημμυρικοί Xάρτες</a><br>
+				   <a href="https://kb.ermis-f.eu/kb/">Βάση Γνώσης</a><br>
+				   <a href="https://cr.ermis-f.eu/map/dashboard/">Εφαρμογή Πληθοπορισμού</a><br>
+				   Σύστημα Έγκαιρης Προειδοποίησης<br>
+				   Εφαρμογή Κοινωνικής Δικτύωσης<br>
+                </p>
+            </div>
+
+            <div class="modal-footer">
+
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <div id="scrollToTop" class="scrollToTop mbr-arrow-up">
+    <a style="text-align: center;">
+        <i class="mbr-arrow-up-icon mbr-arrow-up-icon-cm cm-icon cm-icon-smallarrow-up"></i>
+    </a>
+  </div>
+
+  <input name="animation" type="hidden">
+
+  <script src="{% static "js/jquery.min.js" %}"></script>
+  <script src="{% static "js/bootstrap.min.js" %}"></script>
+  <script src="{% static "js/smooth-scroll.js" %}"></script>
+  <script src="{% static "js/nav-dropdown.js" %}"></script>
+  <script src="{% static "js/jquery.touch-swipe.min.js" %}"></script>
+  <script src="{% static "js/script.js" %}"></script>
+  <script src="{% static "js/navbar-dropdown.js" %}"></script>
+
+  {% block ermis_javascript %} {% endblock ermis_javascript %}
+
+</body>
+</html>

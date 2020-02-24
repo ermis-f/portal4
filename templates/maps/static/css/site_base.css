@@ -1,0 +1,58 @@
+.navbar-brand {
+    width: 253px;
+    height: 79px;
+    background: transparent url("../img/ermis_logo_trans.png") no-repeat scroll 15px 0px;
+    background-size: 220px 78px;
+}
+
+.home .jumbotron{
+ background: transparent url("../img/ermis_header.png") ;
+ background-repeat: no-repeat;
+ background-size: cover;
+ background-position: left center;
+}
+
+.home .jumbotron{
+ padding-top: 5em;
+ padding-bottom: 0.1em;
+}
+
+.home .big-search .search{
+width:100%;
+}
+.tblbigsearch{
+width:90%;
+margin-left:10%;
+}
+.home .big-search{
+padding-bottom:0em;
+padding-top:0em;
+#width:70%;
+
+}
+
+.carousel-indicators li {
+background-color: #2c689c;
+}
+
+
+.carousel-indicators .active {
+background-color: #2c689c;
+}
+
+
+.home .big-search .search .fa-search{
+margin-left:10%;
+}
+
+
+#.jumbotron .container{
+# width: 90%;
+#}
+#.navbar-right{
+#     margin-right: -100px;
+#}
+
+#.col-md-6 text-right{
+#      width: 30%;
+#}

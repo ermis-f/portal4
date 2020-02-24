@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+{% load i18n %}
+{% load staticfiles %}
+{% get_current_language as LANGUAGE_CODE %}
+
+<html  lang="{{ LANGUAGE_CODE }}">
+
+<head>
+    <title>{% block ermis_title %}ERMIS-F{% endblock ermis_title %}</title>
+    <meta charset="UTF-8">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="ERMIS-F application">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="shortcut icon" href="{% static "img/Ermis_ico32x32.png" %}" type="image/x-icon">
+    <link rel="dns-prefetch" href="http://fonts.googleapis.com">
+    <link rel="stylesheet" id="font-awesome-latest-css" href="{% static "css/font-awesome.css" %}" type="text/css" media="all">
+    <link rel="stylesheet" id="bootstrap-css" href="{% static "css/bootstrap.min.css" %}" type="text/css" media="all">
+    <link rel="stylesheet" id="kleo-app-css" href="{% static "css/app.min.css" %}" type="text/css" media="all">
+    <link rel="stylesheet" id="kleo-fonts-css" href="{% static "css/fontello.min.css" %}" type="text/css" media="all">
+    <link rel="stylesheet" id="kleo-google-fonts-css" href="https://fonts.googleapis.com/css?family=Open+Sans%3A300%2C400&subset=greek&ver=5.2.4" type="text/css" media="all">
+    <link rel="stylesheet" id="kleo-colors-css" href="{% static "css/dynamic.css" %}" type="text/css" media="all">
+    <link rel="stylesheet" id="wp-custom-css" href="{% static "css/custom.css" %}" type="text/css" media="all">
+    {% block ermis_styles %} {% endblock ermis_styles %}
+</head>
+
+<body {% block ermis_body_attributes %} class="kleo-navbar-fixed navbar-resize navbar-full-width footer-bottom" {% endblock ermis_body_attributes %}>
+
+    <div class="kleo-page">
+
+        <div id="header" class="header-color">
+
+            <div class="navbar" role="navigation">
+
+                <div class="kleo-main-header header-lp">
+                    <div class="container">
+
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <div class="kleo-mobile-switch">
+                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+                                    <span class="sr-only">{% trans "Toggle navigation" %}</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+                            </div>
+
+                            <div class="kleo-mobile-icons">
+                            </div>
+
+                            <strong class="logo">
+						      <a href="https://ermis-f.eu">
+								<img id="logo_img"  src="{% static "img/Interreg-logo-site.png" %}" alt="ERMIS – F" style="min-height: 90%; max-height: 98%">
+                              </a>
+					       </strong>
+                        </div>
+
+                        <div class="primary-menu collapse navbar-collapse nav-collapse">
+                            <ul class="nav navbar-nav">
+                                {% block ermis_apps %}
+                                <li class="menu-item-has-children dropdown"><a href="https://service.ermis-f.eu/login" class="js-activated btn btn-highlight" ><i class="icon-streamline-school-graduation"></i>{% trans "ERMIS-F" %}<span class="caret"></span></a>
+                                    <ul role="menu" class="dropdown-menu sub-menu pull-left">
+                                        <li><a href="https://geoportal.ermis-f.eu/" ><i class="icon-streamline-group-global"></i>{% trans "GIS Portal" %}</a></li>
+                                        <li><a href="https://geoportal.ermis-f.eu/static_maps/cyprus.html" ><i class="icon-streamline-filter-picture"></i>{% trans "Flood Maps" %}</a></li>
+                                        <li><a href="https://kb.ermis-f.eu/" ><i class="icon-home"></i>{% trans "Knowledge Base" %}</a></li>
+										<li><a href="https://cr.ermis-f.eu/" ><i class="icon-streamline-compatible-devices"></i>{% trans "Crowdsourcing" %}</a></li>
+                                        <li><a href="https://sm.ermis-f.eu/" ><i class="icon-streamline-friends"></i>{% trans "Social Media" %}</a></li>  
+                                    </ul>
+                                </li>
+                                {% endblock ermis_apps %}
+                                {% block ermis_app_menu %}
+                                
+                                {% endblock ermis_app_menu %}
+                                <li class="menu-item-has-children dropdown"><a href="#" class="js-activated" >{% trans "Info" %} <span class="caret"></span></a>
+                                    <ul role="menu" class="dropdown-menu sub-menu pull-left">
+                                        <li><a href="{% block ermis_info_app_about_href %}#{% endblock ermis_info_app_about_href %}" >{% trans "About" %}</a></li>
+                                        <li><a href="{% block ermis_info_glossary_href %}#{% endblock ermis_info_glossary_href %}" >{% trans "Glossary" %}</a></li>
+                                        {% block ermis_info_menu %}{% endblock ermis_info_menu %}
+                                    </ul>
+                                </li>
+                                {% if user.is_authenticated %}
+                                <li class="menu-item-has-children dropdown"><a href="#" class="js-activated" > {% trans "Admin" %} <span class="caret"></span></a>
+                                    <ul role="menu" class="dropdown-menu sub-menu pull-left">
+                                      {% block ermis_admin %} {% endblock ermis_admin %}
+                                      <li><a class="text-warning dropdown-item display-4" href="https://service.ermis-f.eu/account/logout/">Sign out {{ request.user.first_name }}</a></li>
+                                    </ul>
+                                </li>
+                                {% else %}
+                                <li class="menu-item-has-children dropdown"><a href="https://service.ermis-f.eu/login/" class="js-activated" ><i class="fa fa-sign-in" aria-hidden="true"></i> {% trans "Sign in" %} <span class="caret"></span></a>
+                                    <ul role="menu" class="dropdown-menu sub-menu pull-left">
+                                        <li><a href="https://service.ermis-f.eu/user/register/" >{% trans "Register" %}</a></li>
+                                        {% block ermis_login_menu %}{% endblock ermis_login_menu %}
+                                    </ul>
+                                </li>
+                                {% endif %}
+                                <li class=" menu-item-has-children dropdown">
+                                {% if "en" == LANGUAGE_CODE %}
+                                    <a href="#" class="js-activated" ><span style="opacity:0.6;"><img src="{% static "img/en.png" %}" alt="en"></span> <span class="caret"></span></a>
+                                    <ul role="menu" class="dropdown-menu sub-menu pull-left">
+                                    	<li class="lang-el"><a href="#" ><img src="{% static "img/el.png" %}" alt="el"> Ελληνικά</a></li>
+                                    </ul>
+                                {% else %}
+                                    <a href="#" class="js-activated" ><span style="opacity:0.6;"><img src="{% static "img/el.png" %}" alt="en"></span> <span class="caret"></span></a>
+                                    <ul role="menu" class="dropdown-menu sub-menu pull-left">
+                                    	<li class="lang-en"><a href="#" ><img src="{% static "img/en.png" %}" alt="el"> English</a></li>
+                                    </ul>
+                                {% endif %}
+                                </li>
+                                {# Auxiliary hidden form used to change the language. See also JS #}
+                                <li>
+                                <form id="form-language" action="{% url 'set_language' %}" method="post" hidden>{% csrf_token %}
+                                    <select id="language-select" name="language">
+                                            <option value="el" {% if "el" == LANGUAGE_CODE %} selected{% endif %}>Ελληνικά</option>
+                                            <option value="en" {% if "en" == LANGUAGE_CODE %} selected{% endif %}>English</option>
+                                    </select>
+                                    <input type="submit" value="Go">
+                                </form>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="main">
+        {% block ermis_content %}
+        {% endblock ermis_content %}
+        </div>
+
+        {% block ermis_footer %}
+        <div id="footer" class="footer-color border-top">
+            <div class="container">
+                <div class="template-page tpl-no">
+                    <div class="wrap-content">
+                        <div class="row">
+
+                            <div class="col-sm-3">
+                                <div id="footer-sidebar-1" class="footer-sidebar widget-area" role="complementary">
+                                    <div id="text-3" class="widget widget_text">
+                                        <div class="textwidget">
+                                        {% block ermis_footer_col_1 %}
+                                            <p><a href="https://ermis-f.eu/ermis-f/">{% trans "About ERMIS-F" %}</a></p>
+                                            <p><a href="https://ermis-f.eu/contact-us/">{% trans "Contact Us" %}</a></p>
+                                        {% endblock ermis_footer_col_1 %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div id="footer-sidebar-2" class="footer-sidebar widget-area" role="complementary">
+                                    <div id="text-7" class="widget widget_text">
+                                        <div class="textwidget">
+                                        {% block ermis_footer_col_2 %}
+                                        {% endblock ermis_footer_col_2 %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div id="footer-sidebar-3" class="footer-sidebar widget-area" role="complementary">
+                                    <div id="text-5" class="widget widget_text">
+                                        <div class="textwidget">
+                                        {% block ermis_footer_col_3 %}
+                                            <p>{% trans "Disclaimer" %}</p>
+                                            <p>{% trans "Privacy policy" %}</p>
+                                        {% endblock ermis_footer_col_3 %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <div id="footer-sidebar-4" class="footer-sidebar widget-area" role="complementary">
+                                    <div id="text-9" class="widget widget_text">
+                                        <div class="textwidget">
+                                        </div>
+                                    </div>
+                                    <div id="text-8" class="widget widget_text">
+                                        <div class="textwidget">
+                                        {% block ermis_footer_col_4 %}
+                                            <p>
+                                                <a href="https://www.facebook.com/Ermis-F-%CE%94%CE%B9%CE%B1%CE%B4%CE%B9%CE%BA%CF%84%CF%85%CE%B1%CE%BA%CE%AE-%CE%A5%CF%80%CE%B7%CF%81%CE%B5%CF%83%CE%AF%CE%B1-%CE%A0%CE%B5%CF%81%CE%B9%CE%B2%CE%B1%CE%BB%CE%BB%CE%BF%CE%BD%CF%84%CE%B9%CE%BA%CF%8E%CE%BD-%CE%9A%CE%B9%CE%BD%CE%B4%CF%8D%CE%BD%CF%89%CE%BD-%CE%A0%CE%BB%CE%B7%CE%BC%CE%BC%CF%8D%CF%81%CE%B5%CF%82-1014057638803505/"><img class="alignnone wp-image-11806 " src="{% static "img/social-ermis-facebook-300x287.png" %}" alt="" width="26"></a>
+                                                <a href="https://www.youtube.com/channel/UCH8bVeEPAwEGrCkN3xNk5KQ"><img class="alignnone wp-image-11805 " src="{% static "img/social-ermis-youtube-300x287.png" %}" alt="" width="26"></a>
+                                            </p>
+                                        {% endblock ermis_footer_col_4 %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <a class="kleo-go-top" href="#"><i class="icon-up-open-big"></i></a>
+                    <hr style="border-color:white">
+
+                    <div class="row" style="color:white;">
+                        <div class="col-sm-12">
+                            <img class="wp-image-11145 alignleft" src="{% static "img/interreg-greece-cyprus-logo-negative-192x105.png" %}" alt="" width="119" >
+                            <p style="font-size: 10px; line-height: 1.2;">
+                            {% if "el" == LANGUAGE_CODE %}
+                                Η δημιουργία της ιστοσελίδας συγχρηματοδοτείται από την Ευρωπαϊκή Ένωση (Ε.Τ.Π.Α.) και από Εθνικούς πόρους της Ελλάδας και της Κύπρου. Το περιεχόμενο της ιστοσελίδας αποτελεί αποκλειστική ευθύνη του ονόματος του δικαιούχου και δεν μπορεί σε καμία περίπτωση να αντικατοπτρίζει τις απόψεις της Ευρωπαϊκής Ένωσης, των συμμετεχουσών χωρών και της Διαχειριστικής Αρχής.
+                            {% else %}
+                                This site is co-financed by the European Regional Development Fund (ERDF) and national funds of Greece and Cyprus. The sole responsibility for the content of this site lies with the authors. The content does not necessarily reflect the opinion of the EU or the participating countries.
+                            {% endif %}
+                            </p>
+                            <span style="color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; font-size: 14px;">© Copyright 2020 ERMIS-F - All Rights Reserved</span> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock ermis_footer %}
+
+    </div>
+
+    <script src="{% static "js/jquery.min.js" %}"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script>
+        /* <![CDATA[ */
+        var kleoFramework = {
+            "ajaxurl": "http:\/\/OFFLINEZIP.wpshowp-admin\/admin-ajax.php",
+            "themeUrl": "http:\/\/OFFLINEZIP.wpshowp-content\/themes\/kleo",
+            "loginUrl": "http:\/\/OFFLINEZIP.wpshowp-login.php",
+            "goTop": "1",
+            "ajaxSearch": "0",
+            "alreadyLiked": "You already like this",
+            "logo": "{% static "img/Interreg-logo-site.png" %}",
+            "headerHeight": "65",
+            "headerHeightScrolled": "55",
+            "headerTwoRowHeight": "88",
+            "headerTwoRowHeightScrolled": "0",
+            "headerResizeOffset": "",
+            "loadingmessage": "<i class=\"icon icon-spin5 animate-spin\"><\/i> Sending info, please wait...",
+            "DisableMagnificGallery": "0",
+            "flexMenuEnabled": "0",
+            "portfolioVideoHeight": "160"
+        };
+        /* ]]> */
+    </script>
+    <script src="{% static "js/app.min.js" %}"></script>
+    <script>
+        $(".lang-el").click(function() {
+            $('#language-select').val('el');
+            $("#form-language").submit();
+        })
+        $(".lang-en").click(function() {
+            $('#language-select').val('en');
+            $("#form-language").submit();
+        })
+    </script>
+    {% block ermis_javascript %} {% endblock ermis_javascript %}
+
+</body>
+
+</html>
+
+

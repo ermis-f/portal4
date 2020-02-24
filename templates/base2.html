@@ -1,0 +1,36 @@
+{% extends "ermis_base.html" %}
+
+{% block ermis_styles %} 
+ {% block styles %} {% endblock styles %} 
+{% endblock ermis_styles %}
+
+{% block ermis_main_menu %}
+
+ <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true">
+              
+                <li class="nav-item dropdown">
+                    <a class="nav-link link text-warning dropdown-toggle display-4" href="https://#" data-toggle="dropdown-submenu" aria-expanded="false">
+                        Εφαρμογές Ermis-F
+                    </a>
+                    <div class="dropdown-menu">
+			<a class="text-warning dropdown-item display-4" href="https://geoportal.ermis-f.eu/static_maps/cyprus.html">Πλημμυρικοί Χάρτες</a>
+                        <a class="text-warning dropdown-item display-4" href="https://geoportal.ermis-f.eu">Γεωπύλη</a>
+                        <a class="text-warning dropdown-item display-4" href="https://kb.ermis-f.eu/kb/">Βάση Γνώσης</a>
+			<a class="text-warning dropdown-item display-4" href="https://kb.ermis-f.eu/map/dashboard/">Εφαρμογή Πληθοπορισμού</a>
+                        <a class="text-warning dropdown-item display-4" href="https://kb.ermis-f.eu/social/feed/">Εφαρμογή Κοινωνικής Δικτύωσης</a>
+                        <a class="text-warning dropdown-item display-4" href="#" disabled>Σύστημα Έγκαιρης Προειδοποίησης</a>
+
+                    </div>
+                </li>
+ </ul>
+
+
+{% endblock ermis_main_menu %}
+
+{% block ermis_content %}
+
+{% block content %}
+
+{% endblock content %}
+{% endblock ermis_content %}
+

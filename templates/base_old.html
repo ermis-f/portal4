@@ -1,0 +1,85 @@
+{% load i18n %}
+{% load static %}<!DOCTYPE html>
+{% load bootstrap3 %}
+<html lang="en" dir="ltr">
+<head>
+<title>Πύλη Ermis-F</title>
+<meta charset="UTF-8">
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" /> 
+<link rel="stylesheet" href="{% static "css/layout.css" %}" type="text/css">
+<link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<!--<link rel="stylesheet" href="{% static "css/layout.css" %}" type="text/css">-->
+<style>
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 0 0 100px;
+    /* bottom = footer height */
+    padding: 0px;
+}
+footer {
+    background-color: orange;
+    position: absolute;
+    left: 0;
+    padding:20px;
+    bottom: 0;
+    height: 100px;
+    width: 100%;
+    overflow: hidden;
+}
+</style>
+<!--[if lt IE 9]><script src="scripts/html5shiv.js"></script><![endif]-->
+{% block styles %}
+{% endblock styles %}
+{% if 'javascript_in_head'|bootstrap_setting %}{% bootstrap_javascript jquery=True %}{% endif %}
+</head>
+<body>
+<div class="wrapper row1">
+  <header id="header" class="clear">
+    <div id="hgroup">
+      <h1><a href="#"><img src="{% static "images/ermis_logo_trans.png" %}"></a></h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="http://service.ermis-f.eu/index.html">Αρχικη</a></li>
+        <li><a href="http://service.ermis-f.eu/help.html">Οδηγιες</a></li>
+	 <li><a href="http://service.ermis-f.eu/workshop.html">Workshop</a></li>
+
+      
+        <li><a href="http://service.ermis-f.eu/contact.html">Επικοινωνια</a></li>
+        {% if user.is_authenticated %}
+         <li style="text-transform: lowercase;">
+            <a href="http://service.ermis-f.eu/logout/">
+            {{ user.username | truncatechars:20 }}
+           <br/>
+<span style="float:right">(Έξοδος)</span>
+            </a>
+         </li>
+
+        {% else %}   
+        <li class="last"><a href="http://service.ermis-f.eu/login/">Εγγραφη/Συνδεση</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+</div>
+
+  {% block content %}
+  
+  {% endblock %}
+
+</div>
+<!-- Footer -->
+<!--<div class="wrapper row3">-->
+  <footer id="footer" class="clear">
+    <p class="fl_left">Copyright &copy; 2018 - All Rights Reserved - <a href="#">Ermis-F</a></p>
+    <p class="fl_right">Template by <a target="_blank" href="https://www.os-templates.com/" title="Free Website Templates">OS Templates</a></p>
+  </footer>
+
+{% if not 'javascript_in_head'|bootstrap_setting %}{% bootstrap_javascript jquery=True %}{% endif %}
+{% block bootstrap3_extra_script %}{% endblock %}
+</body>
+</html>

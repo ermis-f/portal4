@@ -1,0 +1,146 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-18 14:23+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: ermisAuth/settings.py:284
+msgid "English"
+msgstr ""
+
+#: ermisAuth/settings.py:285
+msgid "Greek"
+msgstr ""
+
+#: templates/base.html:14 templates/ermis_base.html:68
+#: templates/ermis_base2.html:62
+msgid "ERMIS-F"
+msgstr ""
+
+#: templates/base.html:16 templates/ermis_base.html:64
+#: templates/ermis_base2.html:64
+msgid "GIS Portal"
+msgstr "Γεωπύλη"
+
+#: templates/base.html:17 templates/ermis_base.html:65
+#: templates/ermis_base2.html:65
+msgid "Flood Maps"
+msgstr "Πλημμυρικοί Χάρτες"
+
+#: templates/base.html:18 templates/ermis_base.html:62
+#: templates/ermis_base2.html:66
+msgid "Knowledge Base"
+msgstr "Βάση Γνώσης"
+
+#: templates/base.html:19 templates/ermis_base.html:66
+#: templates/ermis_base2.html:67
+msgid "Crowdsourcing"
+msgstr "Πληθοπορισμός"
+
+#: templates/base.html:20 templates/ermis_base.html:67
+#: templates/ermis_base2.html:68
+msgid "Social Media"
+msgstr "Κοινωνική Δικτύωση"
+
+#: templates/ermis_base.html:42 templates/ermis_base2.html:42
+msgid "Toggle navigation"
+msgstr "Εναλλαγή Πλοήγησης"
+
+#: templates/ermis_base.html:74
+msgid "App Item"
+msgstr ""
+
+#: templates/ermis_base.html:76
+msgid "App Items"
+msgstr ""
+
+#: templates/ermis_base.html:78
+msgid "App Item 1"
+msgstr ""
+
+#: templates/ermis_base.html:79
+msgid "App Item 2"
+msgstr ""
+
+#: templates/ermis_base.html:80
+msgid "Sub Menu"
+msgstr ""
+
+#: templates/ermis_base.html:82
+msgid "App Item 3"
+msgstr ""
+
+#: templates/ermis_base.html:83
+msgid "App Item 4"
+msgstr ""
+
+#: templates/ermis_base.html:89 templates/ermis_base2.html:75
+msgid "Info"
+msgstr "Πληροφορίες"
+
+#: templates/ermis_base.html:91 templates/ermis_base2.html:77
+msgid "About"
+msgstr "Σχετικά"
+
+#: templates/ermis_base.html:100 templates/ermis_base2.html:78
+msgid "Glossary"
+msgstr "Γλωσσάρι"
+
+#: templates/ermis_base.html:105 templates/ermis_base2.html:83
+msgid "Admin"
+msgstr "Διαχείριση"
+
+#: templates/ermis_base.html:108
+msgid "Sign out"
+msgstr "Αποσύνδεση"
+
+#: templates/ermis_base.html:112 templates/ermis_base2.html:90
+msgid "Sign in"
+msgstr "Σύνδεση"
+
+#: templates/ermis_base.html:114 templates/ermis_base2.html:92
+msgid "Register"
+msgstr "Εγγραφή"
+
+#: templates/ermis_base.html:169 templates/ermis_base2.html:147
+msgid "About ERMIS-F"
+msgstr "Σχετικά με το ERMIS-f"
+
+#: templates/ermis_base.html:170 templates/ermis_base2.html:148
+msgid "Contact Us"
+msgstr "Επικοινωνήστε μαζί μας"
+
+#: templates/ermis_base.html:193 templates/ermis_base2.html:171
+msgid "Disclaimer"
+msgstr ""
+
+#: templates/ermis_base.html:194 templates/ermis_base2.html:172
+msgid "Privacy policy"
+msgstr ""
+
+#~ msgid "Sign in to ERMIS-F Service"
+#~ msgstr "Συνδεθείτε στην Υπηρεσία ERMIS-F"
+
+#~ msgid "I forgot my password"
+#~ msgstr "Ξέχασα των κωδικό μου"
+
+#~ msgid ""
+#~ "If you don't have an account for the ERMIS-F Service click <a "
+#~ "href='http://service.ermis-f.eu/user/register'>here</a> to register"
+#~ msgstr ""
+#~ "Αν δεν έχeτε λογαριασμό στην Υπηρεσία ERMIS-F κάντε κλικ <a href='http://"
+#~ "service.ermis-f.eu/user/register'>εδώ</a> για να εγγραφείτε"

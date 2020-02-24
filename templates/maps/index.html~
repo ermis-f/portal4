@@ -1,0 +1,705 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta Http-Equiv="Cache-Control" Content="no-cache">
+    <meta Http-Equiv="Pragma" Content="no-cache">
+    <meta Http-Equiv="Expires" Content="0">
+    <meta Http-Equiv="Pragma-directive: no-cache">
+    <meta Http-Equiv="Cache-directive: no-cache">
+
+    <title> Map - Ermis Geoportal </title>
+    
+
+    <style>
+        #paneltbar {
+            margin-top: 90px !important;
+        }
+    </style>
+
+    
+<link rel="stylesheet" type="text/css" href="static/geoexplorer/externals/ext/resources/css/ext-all.css?v=2.8.1rc0" />
+<script type="text/javascript" src="static/geoexplorer/externals/ext/adapter/ext/ext-base.js?v=2.8.1rc0"></script>
+<script type="text/javascript" src="static/geoexplorer/externals/ext/ext-all.js?v=2.8.1rc0"></script>
+
+<script type="text/javascript">
+  Ext.Ajax.defaultHeaders = { 'X-CSRFToken': 'fuvmHFZEjX3w6veEV3h5dVTbPkdiq7Q5' };
+  Ext.BLANK_IMAGE_URL = "static/geoexplorer/externals/ext/resources/images/default/s.gif";
+</script>
+
+
+<script src="static/geonode/js/extjs/ux.js?v=2.8.1rc0"></script>
+
+<link rel="stylesheet" type="text/css" href="static/geoexplorer/externals/GeoExt/resources/css/geoext-all.css?v=2.8.1rc0" />
+<link rel="stylesheet" type="text/css" href="static/geoexplorer/externals/GeoExt/resources/css/gxtheme-gray.css?v=2.8.1rc0">
+<link rel="stylesheet" type="text/css" href="static/geoexplorer/theme/ux/colorpicker/color-picker.ux.css?v=2.8.1rc0" />
+<link rel="stylesheet" type="text/css" href="static/geoexplorer/externals/PrintPreview/resources/css/printpreview.css?v=2.8.1rc0" />
+<link rel="stylesheet" type="text/css" href="static/geoexplorer/externals/openlayers/theme/default/style.css?v=2.8.1rc0" />
+<link rel="stylesheet" type="text/css" href="static/geoexplorer/externals/gxp/src/theme/all.css?v=2.8.1rc0" />
+<link rel="stylesheet" type="text/css" href="static/geoexplorer/theme/app/geoexplorer.css?v=2.8.1rc0" />
+<!--[if IE]><link rel="stylesheet" type="text/css" href="/static/geoexplorer/theme/app/ie.css"/><![endif]-->
+
+<script src="https://maps.googleapis.com/maps/api/js?key=None" type="text/javascript"></script>
+
+<script src="static/geoexplorer/script/GeoExplorer.js?v=2.8.1rc0" type="text/javascript"></script>
+<!-- script type="text/javascript" src="{% static "geonode/js/extjs/GeoExplorer-debug.js"></script -->
+
+<style>
+    .olImageLoadError {
+        background-color: lightgray !important;
+        opacity: 0.2 !important;
+        filter: alpha(opacity=20) !important; /* IE */
+
+        /* background-image: url('{% static "geonode/img/light_gray.jpg') !important;
+        background-repeat: no-repeat !important; */
+
+        /*display: none !important;*/
+    }
+</style>
+
+<script type="text/javascript">
+OpenLayers.ImgPath = "static/geoexplorer/externals/openlayers/theme/default/img";
+OpenLayers.Util.onImageLoadErrorColor = 1;
+OpenLayers.Util.onImageLoadErrorColor = 'transparent';
+OpenLayers.Util.onImageLoadError = function() {
+    this.src = '{% static "geonode/img/light_gray.jpg';
+};
+
+OpenLayers.Request.DEFAULT_CONFIG.headers = {
+  'X-CSRFToken': 'fuvmHFZEjX3w6veEV3h5dVTbPkdiq7Q5'
+};
+
+/**
+*  Add GetFeedFeatureInfo tool to GeoExplorer.Viewer
+*/
+GeoExplorer.Viewer.prototype.loadConfig = function(config) {
+
+  try {
+      config.tools.push( {
+        ptype: "gxp_legend",
+        checked: true
+      });
+  } catch(err) {
+      console.log(err);
+  }
+
+  // remove the 3D Viewer if no Google API Key is availbale
+  var google_api_key = 'None';
+  if(google_api_key.length == 0 || 'None' == google_api_key) {
+    config.viewerTools.splice(10,1);
+  }
+
+  config.viewerTools.push( {
+    ptype: "gxp_getfeedfeatureinfo",
+    checked: true
+  });
+
+  config.viewerTools.push({
+      ptype: "gxp_playback",
+      checked: true,
+      outputTarget: "paneltbar"
+  });
+
+  // Do not include the layer styler on the map-detail view.
+  
+
+  GeoExplorer.Viewer.superclass.loadConfig.call(this, config);
+};
+
+// remove the 3D Viewer from GeoExplorer
+GeoExplorer.Composer.prototype.loadConfig = function(config) {
+  // remove the 3D Viewer if no Google API Key is availbale
+  var google_api_key = 'None';
+  if(google_api_key.length == 0 || 'None' == google_api_key) {
+    config.tools.splice(6,1);
+  }
+
+  GeoExplorer.Composer.superclass.loadConfig.call(this, config);
+};
+
+</script>
+
+<link href="static/geonode/css/geoexplorer/map_geoexplorer.css" rel="stylesheet"/>
+<script type="text/javascript" src="static/geonode/js/extjs/GeoNode-mixin.js"></script>
+<script type="text/javascript" src="static/geonode/js/extjs/Geonode-CatalogueApiSearch.js"></script>
+<script type="text/javascript" src="static/geonode/js/extjs/GeoNode-GeoExplorer.js"></script>
+<script type="text/javascript" src="static/geonode/js/utils/thumbnail.js"></script>
+<script type="text/javascript">
+var app;
+Ext.onReady(function() {
+
+    GeoExt.Lang.set("el");
+    var config = Ext.apply({
+        authStatus:  200,
+        
+        proxy: '/proxy/?url=',
+        
+
+        
+        access_token: "r5qoOWnoQNvYZY1sDbMm6Y0sdZpIJX",
+        
+
+        
+        printService: "http://ermis-floods.aegean.gr/geoserver/pdf/",
+        
+
+        /* The URL to a REST map configuration service.  This service
+         * provides listing and, with an authenticated user, saving of
+         * maps on the server for sharing and editing.
+         */
+        rest: "/maps/",
+        ajaxLoginUrl: "/account/ajax_login",
+        homeUrl: "/",
+        localGeoServerBaseUrl: "http://ermis-floods.aegean.gr/geoserver/",
+        localCSWBaseUrl: "http://ermis-floods.aegean.gr/catalogue/csw",
+        csrfToken: "fuvmHFZEjX3w6veEV3h5dVTbPkdiq7Q5",
+        tools: [{ptype: "gxp_getfeedfeatureinfo"}],
+        listeners: {
+            "ready": function() {
+                app.mapPanel.map.getResolutions = function() {
+                    return [156543.03390625, 78271.516953125, 39135.7584765625,
+                      19567.87923828125, 9783.939619140625, 4891.9698095703125,
+                      2445.9849047851562, 1222.9924523925781, 611.4962261962891,
+                      305.74811309814453, 152.87405654907226, 76.43702827453613,
+                      38.218514137268066, 19.109257068634033, 9.554628534317017,
+                      4.777314267158508, 2.388657133579254, 1.194328566789627,
+                      0.5971642833948135, 0.2985821416974067, 0.1492910708487033,
+                      0.0746455354243516];
+                }
+                app.mapPanel.map.getServerResolutions = function() {
+                      return [156543.03390625, 78271.516953125, 39135.7584765625,
+                            19567.87923828125, 9783.939619140625,
+                            4891.9698095703125, 2445.9849047851562,
+                            1222.9924523925781, 611.4962261962891,
+                            305.74811309814453, 152.87405654907226,
+                            76.43702827453613, 38.218514137268066,
+                            19.109257068634033, 9.554628534317017,
+                            4.777314267158508, 2.388657133579254,
+                            1.194328566789627, 0.5971642833948135];
+                }
+                app.mapPanel.map.getMaxResolution = function() {
+                    return 156543.0339 * 2;
+                }
+                app.mapPanel.map.getNumZoomLevels  = function() {
+                    return 30;
+                }
+                app.mapPanel.map.getMinZoom  = function() {
+                    return 0;
+                }
+                app.mapPanel.map.getMaxZoom  = function() {
+                    return 30;
+                }
+                app.mapPanel.map.getResolutionForZoom = function(zoom) {
+                    zoom = Math.max(0, Math.min(zoom, this.getResolutions().length - 1));
+                    var resolution;
+                    var fractionalZoom = true;
+                    if(fractionalZoom) {
+                        var low = Math.floor(zoom);
+                        var high = Math.ceil(zoom);
+                        resolution = this.getResolutions()[low] -
+                            ((zoom-low) * (this.getResolutions()[low]-this.getResolutions()[high]));
+                    } else {
+                        resolution = this.getResolutions()[Math.round(zoom)];
+                    }
+                    return resolution;
+                }
+                app.mapPanel.map.adjustZoom  = function(zoom) {
+                    var maxResolution = 156543.0339 * 2;
+                    if (this.baseLayer && this.baseLayer.wrapDateLine) {
+                        var resolution, resolutions = this.getResolutions(),
+                            // maxResolution = this.getMaxExtent().getWidth() / this.size.w;
+                            maxResolution = this.getMaxResolution();
+                        if (this.getResolutionForZoom(zoom) > maxResolution) {
+                            var fractionalZoom = true;
+                            if (fractionalZoom) {
+                                zoom = this.getZoomForResolution(maxResolution);
+                            } else {
+                                for (var i=zoom|0, ii=resolutions.length; i<ii; ++i) {
+                                    if (resolutions[i] <= maxResolution) {
+                                        zoom = i;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    return zoom;
+                }
+
+                try {
+                    l = app.selectedLayer.getLayer();
+                    l.addOptions({wrapDateLine:true, displayOutsideMaxExtent: true});
+                    l.addOptions({maxExtent:app.mapPanel.map.getMaxExtent()});
+                } catch(err) {
+                    ;
+                }
+
+                
+                    try {
+                        if(l.url != undefined && (typeof l.url) == "string") {
+                            l.url += ( !l.url.match(/\b\?/gi) || l.url.match(/\b\?/gi).length == 0 ? '?' : '&');
+                            if((!l.url.match(/\baccess_token/gi))) {
+                                l.url += "access_token=r5qoOWnoQNvYZY1sDbMm6Y0sdZpIJX";
+                            } else {
+                                l.url =
+                                    l.url.replace(/(access_token)(.+?)(?=\&)/, "$1=r5qoOWnoQNvYZY1sDbMm6Y0sdZpIJX");
+                            }
+                        }
+                    } catch(err) {
+                        console.log(err);
+                    }
+                
+
+                for (var ll in app.mapPanel.map.layers) {
+                    l = app.mapPanel.map.layers[ll];
+                    if (l.url != undefined && (typeof l.url) == "string" && l.url.indexOf('http://ermis-floods.aegean.gr/geoserver/') !== -1) {
+                        l.addOptions({wrapDateLine:true, displayOutsideMaxExtent: true});
+                        l.addOptions({maxExtent:app.mapPanel.map.getMaxExtent()});
+                        
+                            try {
+                                l.url += ( !l.url.match(/\b\?/gi) || l.url.match(/\b\?/gi).length == 0 ? '?' : '&');
+                                if((!l.url.match(/\baccess_token/gi))) {
+                                    l.url += "access_token=r5qoOWnoQNvYZY1sDbMm6Y0sdZpIJX";
+                                } else {
+                                    l.url =
+                                        l.url.replace(/(access_token)(.+?)(?=\&)/, "$1=r5qoOWnoQNvYZY1sDbMm6Y0sdZpIJX");
+                                }
+                            } catch(err) {
+                                console.log(err);
+                            }
+                        
+                    }
+                }
+
+                var map = app.mapPanel.map;
+                var layer = app.map.layers.slice(-1)[0];
+                var bbox = layer.bbox;
+                var crs = layer.srs;
+                if (bbox != undefined)
+                {
+                   var extent = new OpenLayers.Bounds();
+
+                   if (layer.capability.bbox &&
+                            !Array.isArray(layer.capability.bbox) &&
+                                    map.projection in layer.capability.bbox) {
+                       bbox = layer.capability.bbox[map.projection].bbox;
+                       extent = OpenLayers.Bounds.fromArray(bbox);
+                   } else {
+                       if (crs != map.projection) {
+                           extent = OpenLayers.Bounds.fromArray(bbox);
+                           extent = extent.clone().transform(crs, map.projection);
+                       } else {
+                           extent = OpenLayers.Bounds.fromArray(bbox);
+                       }
+                   }
+                }
+            },
+           'save': function(obj_id) {
+               createMapThumbnail(obj_id);
+           }
+       }
+    }, {"map": {"layers": [{"opacity": 1.0, "styles": [], "wrapDateLine": true, "args": ["No background"], "displayOutsideMaxExtent": true, "name": "background", "title": "No background", "selected": false, "visibility": false, "source": "0", "group": "background", "fixed": true, "type": "OpenLayers.Layer", "id": 1}, {"opacity": 1.0, "styles": [], "wrapDateLine": true, "args": ["UNESCO", "http://en.unesco.org/tiles/${z}/${x}/${y}.png"], "attribution": "&copy; UNESCO", "name": "background", "title": "UNESCO", "selected": false, "visibility": false, "group": "background", "source": "0", "displayOutsideMaxExtent": true, "fixed": true, "type": "OpenLayers.Layer.XYZ", "id": 1}, {"opacity": 1.0, "styles": [], "wrapDateLine": true, "args": ["UNESCO GEODATA", "http://en.unesco.org/tiles/geodata/${z}/${x}/${y}.png"], "attribution": "&copy; UNESCO", "name": "background", "title": "UNESCO GEODATA", "selected": false, "visibility": false, "group": "background", "source": "0", "displayOutsideMaxExtent": true, "fixed": true, "type": "OpenLayers.Layer.XYZ", "id": 1}, {"opacity": 1.0, "styles": [], "wrapDateLine": true, "args": ["Humanitarian OpenStreetMap", "http://a.tile.openstreetmap.fr/hot/${z}/${x}/${y}.png"], "attribution": "&copy; <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a>, Tiles courtesy of <a href='http://hot.openstreetmap.org/' target='_blank'>Humanitarian OpenStreetMap Team</a>", "name": "background", "title": "Humanitarian OpenStreetMap", "selected": false, "visibility": false, "group": "background", "source": "0", "displayOutsideMaxExtent": true, "fixed": true, "type": "OpenLayers.Layer.XYZ", "id": 1}, {"opacity": 1.0, "styles": [], "wrapDateLine": true, "displayOutsideMaxExtent": true, "name": "mapnik", "title": "OpenStreetMap", "selected": false, "visibility": true, "source": "1", "group": "background", "fixed": true, "id": 1}, {"styles": ["meteo_stations_active3"], "cql_filter": null, "maxscale": null, "getFeatureInfo": {"fields": ["site_id", "station_nu", "station__1", "alpha_nu", "station_nm", "gr_station", "utm_coord_", "lat_va", "long_va", "east_wgs84", "north_wgs8", "region_cd", "watershed_", "subwatersh", "coord_meth", "alt_va", "gps_alt_va", "village_id", "met_distri", "district_c", "remarks_tx", "obs_fg", "active_rai", "record_cn", "record_cr", "record_mn", "record_md", "rowguid", "aws_brand"], "propertyNames": {"record_cn": null, "station_nu": null, "site_id": null, "utm_coord_": null, "station_nm": null, "record_md": null, "subwatersh": null, "record_cr": null, "watershed_": null, "remarks_tx": null, "met_distri": null, "gr_station": null, "record_mn": null, "station__1": null, "region_cd": null, "east_wgs84": null, "village_id": null, "alpha_nu": null, "district_c": null, "north_wgs8": null, "long_va": null, "gps_alt_va": null, "active_rai": null, "rowguid": null, "lat_va": null, "alt_va": null, "obs_fg": null, "aws_brand": null, "coord_meth": null}}, "id": 1, "displayOutsideMaxExtent": true, "title": "meteo_stations_active3", "selected": false, "source": "2", "opacity": 1.0, "attribution": "<span class='gx-attribution-title'>User User2</span>", "format": "image/png8", "visibility": true, "bbox": [3598586.70873, 4106851.34073, 3785258.47712, 4189007.72786], "minscale": null, "transparent": true, "crs": {"type": "name", "properties": "EPSG:32636"}, "wrapDateLine": true, "name": "geonode:meteo_stations_active3", "cached": true, "capability": {"styles": [{"title": "gold square point style", "legend": {"height": "40", "width": "22", "href": "http://ermis-floods.aegean.gr/geoserver/ows?service=wms&request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=geonode%3Ameteo_stations_active3", "format": "image/png"}, "name": "meteo_stations_active3"}], "attribution": {"title": "User User2"}, "name": "geonode:meteo_stations_active3", "infoFormats": ["text/plain", "application/vnd.ogc.gml", "text/xml", "application/vnd.ogc.gml/3.1.1", "text/xml; subtype=gml/3.1.1", "text/html", "application/json"], "abstract": "No abstract provided", "title": "meteo_stations_active3", "srs": {"EPSG:3857": true}, "prefix": "geonode", "bbox": {"EPSG:900913": {"srs": "EPSG:900913", "bbox": [3598586.70873, 4106851.34073, 3785258.47712, 4189007.72786]}, "EPSG:32636": {"srs": "EPSG:32636", "bbox": [438694.000000002, 591374.000000001, 3826838, 3893732]}, "EPSG:4326": {"srs": "EPSG:4326", "bbox": [32.3266544168, 34.5792681182, 34.0035554434, 35.1846866182]}, "EPSG:3857": {"srs": "EPSG:3857", "bbox": [3598586.70873, 4106851.34073, 3785258.47712, 4189007.72786]}}, "formats": ["image/png", "application/atom xml", "application/atom+xml", "application/json;type=utfgrid", "application/openlayers", "application/pdf", "application/rss xml", "application/rss+xml", "application/vnd.google-earth.kml", "application/vnd.google-earth.kml xml", "application/vnd.google-earth.kml+xml", "application/vnd.google-earth.kml+xml;mode=networklink", "application/vnd.google-earth.kmz", "application/vnd.google-earth.kmz xml", "application/vnd.google-earth.kmz+xml", "application/vnd.google-earth.kmz;mode=networklink", "atom", "image/geotiff", "image/geotiff8", "image/gif", "image/gif;subtype=animated", "image/jpeg", "image/png8", "image/png; mode=8bit", "image/svg", "image/svg xml", "image/svg+xml", "image/tiff", "image/tiff8", "image/vnd.jpeg-png", "kml", "kmz", "openlayers", "rss", "text/html; subtype=openlayers", "utfgrid"], "keywords": ["features", "meteo_stations_active"], "storeType": "dataStore", "queryable": true, "llbbox": [32.3266544168, 34.5792681182, 34.0035554434, 35.1846866182]}, "srs": "EPSG:3857", "fixed": false, "tiled": true}, {"opacity": 1.0, "styles": ["geonode:Historical_River_Floods"], "wrapDateLine": true, "attribution": null, "name": "geonode:Historical_River_Floods", "title": "\u0399\u03c3\u03c4\u03bf\u03c1\u03b9\u03ba\u03ad\u03c2 \u03a0\u03bb\u03b7\u03bc\u03bc\u03cd\u03c1\u03b5\u03c2 (Historical_River_Floods)", "cached": true, "format": "image/png", "selected": true, "visibility": true, "transparent": true, "capability": {"abstract": "\u03a0\u03b7\u03b3\u03ae:\nDivision of Hydrology & Hydrogeology & WDD Nicosia District Office \nWater Development Department\nMinistry of Agriculture, Rural Development and Environment \n", "nestedLayers": [], "cascaded": 0, "fixedHeight": 0, "prefix": "geonode", "keywords": ["features", "Historical_River_Floods"], "noSubsets": false, "dimensions": {}, "opaque": false, "infoFormats": ["text/plain", "application/vnd.ogc.gml", "text/xml", "application/vnd.ogc.gml/3.1.1", "text/xml; subtype=gml/3.1.1", "text/html", "application/json"], "styles": [{"title": "A dark orange polygon style", "legend": {"height": "20", "width": "20", "href": "http://ermis-floods.aegean.gr/geoserver/wms?request=GetLegendGraphic&format=image%2Fpng&width=20&height=20&layer=geonode%3AHistorical_River_Floods", "format": "image/png"}, "name": "geonode:Historical_River_Floods"}], "authorityURLs": {}, "bbox": {"EPSG:32736": {"srs": "EPSG:32736", "bbox": [437909.676067495, 13832478.118942222, 599341.685500001, 13911529.471885541]}, "EPSG:3857": {"srs": "EPSG:3857", "bbox": [3597477.977693713, 4113628.9812361165, 3795238.0565466597, 4211138.250103213]}, "EPSG:3785": {"srs": "EPSG:3785", "bbox": [3597477.977693713, 4089339.1303792996, 3795238.0565466597, 4186408.82150823]}, "EPSG:4326": {"srs": "EPSG:4326", "bbox": [32.31669451645649, 34.629381817713885, 34.09320353067933, 35.347004635045224]}, "EPSG:32647": {"srs": "EPSG:32647", "bbox": [-5839084.319848593, 6519248.763805579, -5582375.62090602, 6792859.537817173]}, "EPSG:900913": {"srs": "EPSG:900913", "bbox": [3597477.977693713, 4113628.9812361165, 3795238.0565466597, 4211138.250103213]}, "EPSG:32636": {"srs": "EPSG:32636", "bbox": [437909.676067495, 3832478.11894222, 599341.685500001, 3911529.47188554]}}, "fixedWidth": 0, "metadataURLs": [{"href": "http://ermis-floods.aegean.gr/catalogue/csw?outputschema=http%3A%2F%2Fwww.opengis.net%2Fcat%2Fcsw%2Fcsdgm&service=CSW&request=GetRecordById&version=2.0.2&elementsetname=full&id=86e0f51c-44a7-11e9-9776-005056864579", "type": "FGDC", "format": "text/xml"}], "name": "geonode:Historical_River_Floods", "identifiers": {}, "srs": {"EPSG:3857": true}, "formats": ["image/png", "application/atom xml", "application/atom+xml", "application/json;type=utfgrid", "application/openlayers", "application/openlayers2", "application/openlayers3", "application/pdf", "application/rss xml", "application/rss+xml", "application/vnd.google-earth.kml", "application/vnd.google-earth.kml xml", "application/vnd.google-earth.kml+xml", "application/vnd.google-earth.kml+xml;mode=networklink", "application/vnd.google-earth.kmz", "application/vnd.google-earth.kmz xml", "application/vnd.google-earth.kmz+xml", "application/vnd.google-earth.kmz;mode=networklink", "atom", "image/geotiff", "image/geotiff8", "image/gif", "image/gif;subtype=animated", "image/jpeg", "image/png8", "image/png; mode=8bit", "image/svg", "image/svg xml", "image/svg+xml", "image/tiff", "image/tiff8", "image/vnd.jpeg-png", "image/vnd.jpeg-png8", "kml", "kmz", "openlayers", "rss", "text/html; subtype=openlayers", "text/html; subtype=openlayers2", "text/html; subtype=openlayers3", "utfgrid"], "title": "\u0399\u03c3\u03c4\u03bf\u03c1\u03b9\u03ba\u03ad\u03c2 \u03a0\u03bb\u03b7\u03bc\u03bc\u03cd\u03c1\u03b5\u03c2 (Historical_River_Floods)", "queryable": true, "llbbox": [32.31669451645649, 34.629381817713885, 34.09320353067933, 35.347004635045224]}, "source": "3", "tiled": true, "displayOutsideMaxExtent": true, "fixed": false, "id": 1}], "center": [3748135.4957093, 4149820.5962539], "units": "m", "maxResolution": 156543.03390625, "maxExtent": [-20037508.34, -20037508.34, 20037508.34, 20037508.34], "zoom": 9, "projection": "EPSG:3857"}, "about": {"abstract": "", "title": "chris"}, "sources": {"1": {"ptype": "gxp_osmsource", "id": "1"}, "0": {"ptype": "gxp_olsource", "id": "0"}, "3": {"title": "Local Geoserver", "url": "http://ermis-floods.aegean.gr/geoserver/wms", "baseParams": {"VERSION": "1.1.1", "REQUEST": "GetCapabilities", "SERVICE": "WMS"}, "ptype": "gxp_wmscsource", "restUrl": "/gs/rest", "id": "3"}, "2": {"title": "", "url": "http://ermis-floods.aegean.gr/geoserver/ows", "baseParams": {"VERSION": "1.1.1", "REQUEST": "GetCapabilities", "SERVICE": "WMS"}, "ptype": "gxp_wmscsource", "restUrl": "/gs/rest", "id": "2"}}, "aboutUrl": "../about", "defaultSourceType": "gxp_wmscsource", "id": 97});
+
+    app = new GeoNode.Composer(config);
+
+});
+</script>
+
+	
+      
+        <link href="static/lib/css/assets.min.css?v=2.8.1rc0" rel="stylesheet"/>
+      
+
+      <link href="static/geonode/css/ext-compatibility.css?v=2.8.1rc0" rel="stylesheet" />
+      <link href=/static/geonode/css/ux-all.css?v=2.8.1rc0" rel="stylesheet" />
+      <link href="static/geonode/css/base.css?v=2.8.1rc0" rel="stylesheet" />
+      <style type="text/css">[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}</style>
+      <style type="text/css">
+        /* Additional styles by custom themes */
+        
+
+        
+
+     
+        
+
+      </style>
+      
+      <link href="static/css/site_base.css" rel="stylesheet"/>
+
+    
+
+    <!--[if IE]>
+      <script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+      <style>
+        #ieflag{
+            display: block !important;
+            height: 150px;
+            text-align: center;
+        }
+      </style>
+    <![endif]-->
+    <link rel="search" type="application/opensearchdescription+xml" href="/catalogue/opensearch" title="GeoNode Search"/>
+  </head>
+
+  <body class="">
+    <!-- Navbar -->
+    
+	<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+	  <div class="container">
+        <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+	        <i class="fa fa-navicon fa-lg"></i>
+	      </button>
+	      <a class="navbar-brand" href="/">GeoNode</a>
+	    </div>
+	    <div id="navbar" class="navbar-collapse collapse">
+	      <ul class="nav navbar-nav toolbar">
+	        
+                  <li id="nav_home">
+		    <a href="http://ermis-floods.aegean.gr">Αρχική</a>
+                  </li>
+	        <li id="nav_layers">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Δεδομένα<i class="fa fa-angle-down fa-lg"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="/layers/?limit=20">Θεματικά επίπεδα</a></li>
+                <li><a href="/documents/?limit=20">Έγγραφα</a></li>
+  
+                <li><a href="/services/?limit=20">Απομακρυσμένες υπηρεσίες</a></li>
+ 
+                
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/layers/upload">Ανεβάστε Θεματικό επίπεδο</a></li>
+                    
+                    <li><a href="/documents/upload">Ανεβάστε Έγγραφα</a></li>
+                
+                
+                    <li><a href="/services/register/">Προσθήκη απομακρυσμένης υπηρεσίας</a></li>
+                
+              </ul>
+            </li>
+	        <li id="nav_maps">
+              
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Χάρτες<i class="fa fa-angle-down fa-lg"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="/maps/?limit=20">Αναζήτηση</a></li>
+                <li> <a href="/maps/new">Δημιουργήστε ένα χάρτη</a></li>
+              </ul>
+              
+            </li>
+            <li>
+	      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Μέλη<i class="fa fa-angle-down fa-lg"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="/people/">Άτομα</a></li>
+                <li><a href="/groups/">Ομάδες</a></li>
+ 
+                <li><a href="/groups/categories/">Κατηγορίες ομάδων</a></li>
+ 
+
+                
+                <li><a href="/announcements/">Ανακοινώσεις</a></li>
+                
+                
+              
+  <li role="separator" class="divider"></li>    
+<li><a href="/invitations/geonode-send-invite/">Πρόσκληση xρήστη</a></li>
+ 
+
+                
+                <li><a href="/admin/people/profile/add/">Προσθήκη χρηστών</a></li>
+                <li><a href="/groups/create/">Δημιουργία ομάδας</a></li>
+                
+              </ul>
+            </li>
+<!--	     <li id="nav_apps">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Εφαρμογές ERMIS-F<i class="fa fa-angle-down fa-lg"></i></a>
+              <ul class="dropdown-menu">
+                <li><a href="https://ermis-f.eu/vasi-gnosis/" target="new">Βάση Γνώσης</a></li>
+                <li><a href="https://ermis-f.eu/crowdsourcing-efarmogi/" target="new">Εφαρμογή Πληθοπορισμού</a></li>
+                <li><a href="https://ermis-f.eu" target="new">Εφαρμογή Κοινωνικής Δικτύωσης</a></li>
+		<li><a href="https://ermis-f.eu/systima-egkeris-proidopiisis/" target="new">Σύστημα Έγκαιρης Προειδοποίησης</a></li>
+		</ul>
+		</li>-->
+
+	    
+
+
+            
+          </ul>
+	      <ul class="nav navbar-nav navbar-right">
+           <!-- <li>
+              <div class="search">
+                <form id="search" action="/search/" >
+                  <span class="fa fa-search"></span>
+                  
+                  <input id="search_input" type="text" placeholder="Search" name="title__icontains">
+                  
+                </form>
+              </div>
+	        </li>-->
+		<li>
+			<div class="search">
+		  <label class="hidden">Γλώσσα</label>
+          
+          
+          <form class="form-inline" action="/i18n/setlang/" method="post">
+          <input type='hidden' name='csrfmiddlewaretoken' value='fuvmHFZEjX3w6veEV3h5dVTbPkdiq7Q5' />
+            <select style=" width:120px; background-color: rgba(250, 250, 250,0.7); border: 2px solid grey;
+  border-color: transparent transparent transparent transparent; " class="col-md-6 pull-right" name="language" onchange="javascript:form.submit()">
+              
+              <option value="en" >
+                English
+              </option>
+              
+              <option value="el"  selected="selected">
+                Ελληνικά
+              </option>
+              
+            </select>
+          </form>
+          
+</div>
+		</li>
+            
+            
+            <li>
+              <a href="#" class="dropdown-toggle avatar" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                <img src="http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e/?s=42" alt="vkopsachilis" />
+                
+                  
+                    Vasilis Kopsachilis
+                  
+                
+                <i class="fa fa-angle-down fa-lg"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="/people/profile/vkopsachilis/">Προφίλ</a></li>
+                <li><a href="/social/recent-activity">Πρόσφατη δραστηριότητα</a></li>
+                <li><a href="/messages/inbox/">Εισερχόμενα</a></li>
+                
+                    <li role="separator" class="divider"></li>
+                    <li><a href="/el/admin/">Admin</a></li>
+                    
+                    <li><a href="/proxy/?url=http://ermis-floods.aegean.gr/geoserver/">GeoServer</a></li>
+                    
+                    
+                
+                <li role="separator" class="divider"></li>
+                <li><a href="/help/">Βοήθεια</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="/account/logout/">Logout</a></li>
+                </ul>
+              </li>
+		      
+            </ul>
+          </div> <!--/.nav-collapse -->
+        </div>
+      </nav>
+      
+      <!-- End of Navbar -->
+
+    <div class="alert alert-danger alert-dismissible" role="alert" id="ieflag" style="display:none">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      <h1>You are using an outdated browser that is not supported by GeoNode.</h1>
+      <p>Please use a <strong>modern browser</strong> like Mozilla Firefox, Google Chrome or Safari.</p>
+    </div>
+
+  <div id="wrap">
+    
+    <div class="container">
+      <div class="alert alert-warn" id="status-message" hidden="hidden">
+    <a class="close" onclick="$('.alert').hide()">×</a>
+    <strong><p id="status-message-text">Placeholder for status-message</p></strong>  
+    <p id="status-message-text-body">Placeholder for status-message-body</p>
+</div>
+
+      
+
+
+
+
+      
+
+      
+      <div class="row">
+        <div class="col-md-8">
+        
+        </div>
+        <div class="col-md-4">
+        
+        </div>
+      </div>
+      
+    </div>
+    
+
+    
+    
+
+  </div>
+
+  
+  
+
+  
+
+
+    <!-- Modal must stay outside the navbar -->
+    
+    <!-- End of Modal -->
+
+    
+    <script src="/static/lib/js/assets.min.js?v=2.8.1rc0"></script>
+    
+    <script src="/static/geonode/js/utils/utils.js?v=2.8.1rc0"></script>
+    <script src="/static/geonode/js/base/base.js?v=2.8.1rc0"></script>
+    
+
+<script type="text/javascript">
+jQuery(function($) {
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+function sameOrigin(url) {
+    // test that a given url is a same-origin URL
+    // url could be relative or scheme relative or absolute
+    var host = document.location.host; // host + port
+    var protocol = document.location.protocol;
+    var sr_origin = '//' + host;
+    var origin = protocol + sr_origin;
+    // Allow absolute or scheme relative URLs to same origin
+    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+        // or any other URL that isn't scheme relative or absolute i.e relative.
+        !(/^(\/\/|http:|https:).*/.test(url));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+            // Send the token to same-origin, relative URLs only.
+            // Send the token only if the method warrants CSRF protection
+            // Using the CSRFToken value acquired earlier
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+        }
+    }
+});
+});
+</script>
+
+
+<script type="text/javascript" src="/static/autocomplete_light/django_admin.js"></script>
+<script type="text/javascript" src="/static/autocomplete_light/autocomplete.js"></script>
+<script type="text/javascript" src="/static/autocomplete_light/widget.js"></script>
+<script type="text/javascript" src="/static/autocomplete_light/addanother.js"></script>
+<script type="text/javascript" src="/static/autocomplete_light/text_widget.js"></script>
+<script type="text/javascript" src="/static/autocomplete_light/remote.js"></script>
+<link rel="stylesheet" type="text/css" href="/static/autocomplete_light/style.css" />
+
+    <script type="text/javascript" src="/jsi18n/"></script>
+    
+    <script type="text/javascript">
+        var autocomplete = $('#search_input').yourlabsAutocomplete({
+            url: '/autocomplete/ResourceBaseAutocomplete/',
+            choiceSelector: 'span',
+            hideAfter: 200,
+            minimumCharacters: 1,
+            placeholder: 'Πληκτρολογήστε την αναζήτησή σας εδώ ...',
+            appendAutocomplete: $('#search_input'),
+            autoHilightFirst: false
+        });
+        $('#search_input').bind('selectChoice', function(e, choice, autocomplete) {
+            if(choice[0].children[0] == undefined) {
+                $('#search_input').val($(choice[0]).text());
+                $('#search').submit();
+            }
+        });
+    </script>
+    <script>
+        // Workaround to fix the autocomplete box positions
+        yourlabs.Autocomplete.prototype.fixPosition = function(html) {
+            this.input.parents().filter(function() {
+                return $(this).css('overflow') === 'hidden';
+            }).first().css('overflow', 'visible');
+            if(this.input.attr('name') !== 'resource-keywords'){
+              this.box.insertAfter(this.input).css({top: 28, left: 0});
+            }else{
+              var pos = $.extend({}, this.input.position(), {
+                height: this.input.outerHeight()
+              });
+              this.box.insertAfter(this.input).css({top: pos.top + pos.height, left: pos.left});
+            }
+        };
+    </script>
+    <script type="text/javascript" src="/lang.js"></script>
+
+    <div class="modal fade" style="width: 100%; height: 100%;" id="_resource_uploading" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1>Uploading...</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        Upload in progress...
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" style="width: 100%; height: 100%;" id="_thumbnail_processing" data-backdrop="static" data-keyboard="false" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1>Processing...</h1>
+                </div>
+                <div class="modal-body">
+                    <div class="progress">
+                      <div class="progress-bar progress-bar-info progress-bar-striped active" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        Updating Thumbnail...
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="_thumbnail_feedbacks" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">Message box</h4>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

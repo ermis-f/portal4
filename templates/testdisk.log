@@ -1,0 +1,62 @@
+
+
+Thu Jan 31 13:50:07 2019
+Command line: TestDisk
+
+TestDisk 7.0, Data Recovery Utility, April 2015
+Christophe GRENIER <grenier@cgsecurity.org>
+http://www.cgsecurity.org
+OS: Linux, kernel 4.4.0-139-generic (#165-Ubuntu SMP Wed Oct 24 10:58:50 UTC 2018) x86_64
+Compiler: GCC 5.3
+ext2fs lib: 1.42.13, ntfs lib: libntfs-3g, reiserfs lib: none, ewf lib: none, curses lib: ncurses 6.0
+Warning: can't get size for Disk /dev/mapper/control - 0 B - 0 sectors, sector size=512
+/dev/sr0 is not an ATA disk
+Hard disk list
+Disk /dev/sda - 107 GB / 100 GiB - CHS 13054 255 63, sector size=512 - VMware Virtual disk, FW:1.0
+Disk /dev/mapper/ubuntu--vg-root - 102 GB / 95 GiB - 200318976 sectors, sector size=512 - VMware Virtual disk, FW:1.0
+Disk /dev/mapper/ubuntu--vg-swap_1 - 4294 MB / 4096 MiB - 8388608 sectors, sector size=512 - VMware Virtual disk, FW:1.0
+Disk /dev/sr0 - 686 MB / 655 MiB - 335360 sectors (RO), sector size=2048 - VMware Virtual IDE CDROM Drive, S/N:10000000000000000001, FW:00000001
+Disk /dev/dm-0 - 102 GB / 95 GiB - 200318976 sectors, sector size=512 - VMware Virtual disk, FW:1.0
+Disk /dev/dm-1 - 4294 MB / 4096 MiB - 8388608 sectors, sector size=512 - VMware Virtual disk, FW:1.0
+
+Partition table type (auto): Intel
+Disk /dev/sda - 107 GB / 100 GiB - VMware Virtual disk
+Partition table type: Intel
+
+Interface Advanced
+Geometry from i386 MBR: head=255 sector=63
+
+LVM2 magic value at 62/86/25
+ 1 * Linux                    0  32 33    62  53 55     997376
+     ext2 blocksize=1024 Large_file Sparse_SB, 510 MB / 487 MiB
+ 2 E extended                62  86 23 13054  10 12  208711682
+ 5 L Linux LVM               62  86 25 13054  10 12  208711680
+     LVM2, 106 GB / 99 GiB
+
+Directory /
+       2 drwxr-xr-x     0      0      1024 12-Jan-2019 06:03 .
+       2 drwxr-xr-x     0      0      1024 12-Jan-2019 06:03 ..
+      11 drwx------     0      0     12288 12-Jul-2016 11:50 lost+found
+      13 -rw-r--r--     0      0   1252429  5-Dec-2018 16:08 abi-4.4.0-141-generic
+      14 -rw-r--r--     0      0    190611  5-Dec-2018 16:08 config-4.4.0-141-generic
+      15 -rw-------     0      0   3905747  5-Dec-2018 16:08 System.map-4.4.0-141-generic
+  104449 drwxr-xr-x     0      0      1024 21-Dec-2018 06:58 grub
+      18 -rw-r--r--     0      0       255  2-Oct-2018 22:22 retpoline-4.4.0-138-generic
+      16 -rw-r--r--     0      0       255  5-Dec-2018 16:08 retpoline-4.4.0-141-generic
+      12 -rw-------     0      0   7171392  5-Dec-2018 16:08 vmlinuz-4.4.0-141-generic
+      19 -rw-r--r--     0      0    190611  2-Oct-2018 22:22 config-4.4.0-138-generic
+      20 -rw-------     0      0   7166688  2-Oct-2018 22:22 vmlinuz-4.4.0-138-generic
+      21 -rw-r--r--     0      0   1252309  2-Oct-2018 22:22 abi-4.4.0-138-generic
+      24 -rw-r--r--     0      0       255 24-Oct-2018 18:31 retpoline-4.4.0-139-generic
+      23 -rw-r--r--     0      0   1252309 24-Oct-2018 18:31 abi-4.4.0-139-generic
+      17 -rw-------     0      0   3904838  2-Oct-2018 22:22 System.map-4.4.0-138-generic
+      29 -rw-r--r--     0      0  39843602 15-Dec-2018 06:41 initrd.img-4.4.0-138-generic
+      25 -rw-r--r--     0      0    190611 24-Oct-2018 18:31 config-4.4.0-139-generic
+      26 -rw-------     0      0   7168736 24-Oct-2018 18:31 vmlinuz-4.4.0-139-generic
+      27 -rw-------     0      0   3904765 24-Oct-2018 18:31 System.map-4.4.0-139-generic
+X     30 -rw-r--r--     0      0  39844084 12-Jan-2019 06:03 initrd.img-4.4.0-141-generic.new
+      28 -rw-r--r--     0      0  39842579 15-Dec-2018 06:41 initrd.img-4.4.0-139-generic
+      30 -rw-r--r--     0      0  39844084 12-Jan-2019 06:03 initrd.img-4.4.0-141-generic
+X     22 -rw-r--r--     0      0         0 12-Jan-2019 06:03 initrd.img-4.4.0-141-generic.dpkg-bak
+
+TestDisk exited normally.

@@ -1,0 +1,100 @@
+
+/* sub-sub-menu */
+.dropdown-menu.pull-right {right: 0;left: auto; margin-left:-120px;}
+
+/* menu icons */
+
+a [class^="icon-"], a [class*=" icon-"] {
+    display: inline;
+    padding-right: 10px;
+}
+
+/* Knowledge Base buttons */
+
+.ermisparent {
+
+  padding: 5px;
+  color: #888;
+  font-family: Open Sans;
+  font-size: 14px;
+}
+
+.ermisitem {
+	padding: 10px 5px 30px 5px;
+	text-align:center;
+	margin-left: 5px;
+	margin-right: 5px;
+	transition: transform 0.4s;
+	font-size: 12.5px;
+}
+
+
+.ermisitem:hover,focus {
+ -ms-transform: scale(1.05); /* IE 9 */
+  -webkit-transform: scale(1.1); /* Safari 3-8 */
+  transform: scale(1.05);
+
+	/* Shadow
+	  -moz-box-shadow: 1px 2px 4px rgba(0, 0, 0,0.5);
+      -webkit-box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);
+       box-shadow: 1px 2px 4px rgba(0, 0, 0, .5);*/
+
+}
+
+@media only screen and (min-width: 300px){
+  .ermisparent {
+    display: grid;
+    grid-template-columns: 50% 50%;
+  }
+}
+
+
+@media only screen and (min-width: 641px){
+  .ermisparent {
+    grid-template-columns: 25% 25% 25% 25%;   }
+}
+
+@media only screen and (min-width: 992px){
+  .ermisparent {
+    grid-template-columns: 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% 12.5% ;   }
+}
+
+
+
+
+
+/* First Menu button */
+
+.btn-highlight{
+
+background-color:white!important;
+	border-color:#1e73be !important;
+	border-style: solid;
+	border-width:1px !important;
+	box-shadow:	none !important;
+	text-transform: uppercase;
+	color:#1e73be !important;
+	letter-spacing: 1px;
+	font-size:12px !important;
+	font-weight: 600 !important;
+
+}
+
+.btn-highlight:hover,focus {
+
+background-color:whitesmoke !important;
+	border-color:#1e73be !important;
+	border-style: solid;
+		border-width:1px !important;
+	border-top-width:1px !important;
+
+}
+
+/* Footer */
+.template-page, .sidebar {
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+#footer .widget {
+    margin-bottom: 0;
+}
