@@ -171,6 +171,13 @@ MAMA_CAS_SERVICES = [
         'LOGOUT_ALLOW': True,
         'LOGOUT_URL': 'https://ews.ermis-f.eu/account/logout/',
     },
+       {
+        'SERVICE': 'https://ermis-f.eu',
+        'CALLBACKS': ['ermisPortal.callbacks.geoServiceAttribs',],
+        'LOGOUT_ALLOW': True,
+        'LOGOUT_URL': 'https://ermis-f.eu/account/logout/',
+    },
+
  ]
 
 SESSION_COOKIE_AGE = 36000

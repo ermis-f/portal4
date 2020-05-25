@@ -104,10 +104,10 @@
                                     </ul>
                                 </li>
                                 {% if user.is_authenticated %}
-                                <li class="menu-item-has-children dropdown"><a href="#" class="js-activated" > {% trans "Admin" %} <span class="caret"></span></a>
+				<li class="menu-item-has-children dropdown"><a href="#" class="js-activated" > {{ request.user.username }} <span class="caret"></span></a>
                                     <ul role="menu" class="dropdown-menu sub-menu pull-left">
                                       {% block ermis_admin %} {% endblock ermis_admin %}
-				      <li><a class="text-warning dropdown-item display-4" href="/logout/">{% trans "Sign out" %} {{ request.user.first_name }}</a></li>
+				      <li><a class="text-warning dropdown-item display-4" href="/logout/">{% trans "Sign out" %}</a></li>
                                     </ul>
                                 </li>
                                 {% else %}
