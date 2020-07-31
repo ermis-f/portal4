@@ -1,0 +1,41 @@
+from django.db import models
+#from django.contrib.auth.models import User
+#Note: It's not recommended to import the User directly as it won't work in projects where the AUTH_USER_MODEL setting has been changed to a different user model. Use the get_user_model method instead:
+from django.contrib.auth import get_user_model
+User = get_user_model()
+
+class Institution(models.Model):
+    name = models.CharField(max_length=255, null=True)
+
+    def __str__(self):
+        return self.name
+
+
+class UserRegistrationRecord(models.Model):
+    """
+        much as we are sending user data to LDAP for registration, we want to keep a history
+        of who has registered. We also want to use this table during password reset.
+        We use django's built-in user model (User) just to keep data and avoid re-creating fields
+        that Django already provides. Note that we are not setting the password fields. We are not
+        even keeping the passwords. They belong to LDAP!
+    """
+    # controls
+    reset_code = models.CharField(max_length=255, default='')  # used to hold activation code for registration too
+    reset_code_active = models.BooleanField(default=False)
+    reset_code_expiry = models.DateTimeField(null=True)
+    verified = models.BooleanField(default=False)
+
+    # user data
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    ldap_password = models.CharField(max_length=128, blank=True, null=True)
+    gender = models.CharField(max_length=10, blank=True, null=True)
+    title = models.CharField(max_length=30, blank=True, null=True)
+    designation = models.CharField(max_length=200, blank=True, null=True)
+    department = models.CharField(max_length=200, blank=True, null=True)
+    organization = models.CharField(max_length=255, blank=True, null=True)
+    phone = models.CharField(max_length=200, blank=True, null=True)
+    address = models.TextField(blank=True, null=True)
+    country = models.CharField(max_length=100, blank=True, null=True)
+
+    def __str__(self):
+        return self.user.username

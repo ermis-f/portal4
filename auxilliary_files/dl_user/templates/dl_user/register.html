@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block styles %}
+<style type="text/css">
+
+.col-md-2 {
+    max-width: 99.666667%;
+}
+
+.form-horizontal{
+   width: 99%;
+}
+</style>
+{% endblock styles %}
+
+
+{% block content %}
+    <div class="wrapper row2" style="margin-left:5%; width:60%">
+    <div id="container" class="clear">
+	    <h3>{% trans "Register at ERMIS-F Service" %}</h3>
+    <br/>
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <b>{{ form.errors|length}}</b> error{{ form.errors|length|pluralize:" was,s were" }} found! Please fix.
+        {{ form.non_field_errors }}
+        <ul>
+		    {% for field in form %}
+		    {% if field.errors %}<li><i>{{ field.label }}</i>: {{ field.errors|striptags }}</li>{% endif %}
+			{% endfor %}
+		</ul>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        {% load crispy_forms_tags %}
+        {% crispy form %}
+    </div>
+	</div>
+  </div>
+{% endblock %}

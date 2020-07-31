@@ -1,0 +1,72 @@
+msgid ""
+msgstr ""
+
+"Project-Id-Version: django-mama-cas\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-09-25 18:42-0700\n"
+"PO-Revision-Date: 2014-05-26 10:57-0700\n"
+"Last-Translator: Ming Chen\n"
+"Language-Team: Personal\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+
+msgid "Organization"
+msgstr "Οργανισμός"
+
+msgid "First Name"
+msgstr "Όνομα"
+
+msgid "Last Name"
+msgstr "Επώνυμο"
+
+msgid "Password"
+msgstr "Κωδικός"
+
+msgid "Confirm Password"
+msgstr "Επιβεβαίωση Κωδικού"
+
+msgid "New Password"
+msgstr "Νέος Κωδικός"
+
+msgid "Confirm new Password"
+msgstr "Επιβεβαίωση νέου Κωδικού"
+
+msgid "Submit"
+msgstr "Υποβολή"
+
+msgid "Enter your email"
+msgstr "Εισάγετε το email σας"
+
+msgid "An email will be sent at the registered account that will contain a link for reseting your password."
+msgstr "Ένα email θα σταλθεί στον λογαριασμό σας που θα περιέχει έναν σύνδεσμο για την ανάκτηση του κωδικού σας"
+
+msgid "This email address is not associated with a user account."
+msgstr "Αυτό το email δεν σχετίζεται με κάποιον λογαριασμό χρήστη"
+
+msgid "Passwords don't match"
+msgstr "Οι κωδικοί δεν ταιριάζουν"
+
+msgid "You can not edit your email. If you want to use another email you should create a new account"
+msgstr "Δεν μπορείτε να επεξεργαστείτε το email σας. Αν θέλετε να χρησιμοποιήσετε άλλο email θα πρέπει να δημιουργήσετε νέο λογαριασμό."
+
+msgid "You can not edit your username."
+msgstr "Δεν μπορείτε να αλλάξετε το username σας."
+
+msgid "Edit your Profile"
+msgstr "Επεξεργαστείτε το Προφιλ σας"
+
+msgid "Your profile has been updated. The changes will take place the next time you will login."
+msgstr "To Προφιλ σας ανανεώθηκε. Οι αλλαγές θα εφαρμοστούν την επόμενη φορά που θα συνδεθείτε."
+
+msgid "Change your password"
+msgstr "Αλλάξτε τον κωδικό σας"
+
+msgid "Delete your account"
+msgstr "Διαγράψτε τον λογαριασμό σας"
+
+msgid "'Are you sure you want to delete your account? \r\nIF YOU PRESS OK, YOUR ACCESS TO ERMIS-F RESTRICTED SERVICES WILL BE LOST!'"
+msgstr "'Είστε σίγουροι ότι θέλετε να διαγράψετε τον λογαριασμό σας; \r\nΑΝ ΠΑΤΗΣΕΤΕ ΟΚ, Η ΠΡΟΣΒΑΣΗ ΣΕ ΥΠΗΡΕΣΙΕΣ ΤΟΥ ERMIS-F ΘΑ ΧΑΘΕΙ!'"

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load static %}
+ {% block styles %}
+
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//s.w.org">
+
+<link rel="stylesheet" id="wp-block-library-css" href="../static/css/style.min.css" type="text/css" media="all">
+<link rel="stylesheet" id="bootstrap-css"  href="../static/css/bootstrap.min.css" type="text/css" media="all">
+
+<link rel="stylesheet" id="custom-css" href="../static/css/custom.css" type="text/css" media="all">
+
+<link rel="stylesheet" id="font-awesome-latest-css" href="../static/css/font-awesome.css" type="text/css" media="all">
+
+
+<link rel="stylesheet" id="app-css"  href="../static/css/app.min.css" type="text/css" media="all">
+
+<link rel="stylesheet" id="fonts-css"  href="../static/css/fontello.min.css" type="text/css" media="all">
+
+<link rel="stylesheet" id="colors-css" href="../static/css/dynamic.css" type="text/css" media="all">
+
+<link rel="stylesheet" id="plugins-css" href="../static/css/plugins.min.css" type="text/css" media="all">
+
+<link rel="stylesheet" id="js_composer_front-css" href="../static/js_composer.min.css" type="text/css" media="all">
+
+ <script type="text/javascript" src="="../static/js/modernizr.custom.46504.js"></script>
+ {% endblock styles %}
+
+ {% block content %}
+
+<section class="container-wrap  main-color " style="padding-top:40px;padding-bottom:40px"><div class="section-container container"><div class="vc_row vc_row-fluid row"><div class="wpb_column vc_column_container vc_col-sm-12"><div class="vc_column-inner "><div class="wpb_wrapper">
+
+<h3 style="text-align: center;">
+<img id="logo_img"  src="{% static "img/Interreg-logo-site.png" %}" alt="ERMIS β€“ F" style="height: 100px; width:300px"/>
+</h3>
+<h3><strong>ERMIS-F</strong> stands for “<strong>E</strong>nvironmental <strong>R</strong>isk <strong>M</strong>anagement and <strong>I</strong>nformation <strong>S</strong>ervice – <strong>F</strong>loods”.</h3>
+
+<p>
+The ERMIS-F project is designed to combine three different elements, that is, an Integrated Public Service, a Digital System and an Online Information Platform regarding floods and, at a later time, other natural and environmental risks. Climate change and human activities increase the chances and impacts of natural phenomena that can cause death, population movements and great damage to the environment and the economy. By means of digital cartographic information, data collection, computational risk assessment models and (predictive) disaster forecasting, it aims to make available to the public a wealth of useful information that can then be incorporated into decision-making tools that are used by each stakeholder group, namely, the local government, professional groups, environmental organizations, civil society, scientific community, etc.
+</p>
+
+<p>At a practical level, ERMIS-F features a number of applications:</p>
+
+<ul>
+<li>A GIS web-portal, where it is possible to consult and print maps;</li>
+<li>A Knowledge Base database, which contains information on Legislation, Flood Prevention Measures, Case Studies, Flood Events, Organizations, Sources and Tools; </li>
+<li>A Social Network application, to serve as a gathering point for different stakeholders;</li>
+<li>A Crowdsourcing application, to record real-time information on flood events from mobile phones;</li>
+<li>An Early Warning System to inform citizens about impending flooding in their areas.</li>
+
+</ul>
+
+<p>Since ERMIS-F is a project that is intended for Greek-speaking countries, the ERMIS-F website is not entirely bilingual. However, essential information has been provided in English to account for the many foreigners who either live or visit Greece and Cyprus and are not fluent in Greek. Since floods are a natural hazard that can affect locals and foreigners alike, it was believed to be important to inform everyone, so as to fulfil the scope of the ERMIS-F project.
+</p>
+					</div></div></div></div></div></div></section>
+	{% endblock content %}

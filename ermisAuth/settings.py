@@ -145,7 +145,7 @@ MAMA_CAS_SERVICES = [
         'SERVICE': 'https://geoportal.ermis-f.eu',
         'CALLBACKS': ['ermisPortal.callbacks.geoServiceAttribs',],
         'LOGOUT_ALLOW': True,
-        'LOGOUT_URL': 'https://geoportal.ermis-f.eu/account/logout',
+        'LOGOUT_URL': 'https://geoportal.ermis-f.eu/account/logout/',
     },
     {
         'SERVICE': 'https://cr.ermis-f.eu',

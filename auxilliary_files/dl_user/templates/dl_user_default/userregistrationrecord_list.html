@@ -1,0 +1,79 @@
+{% extends "dl_user/base.html" %}
+{% block bootstrap3_title %}Manage user registration records{% endblock %}
+{% block content %}
+        <h2>User Registration Records</h2>
+</div>
+<table class="table">
+    <thead>
+    <tr>
+        <th>&nbsp;</th>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        <th>Verified</th>
+        <th>Active</th>
+        <th>Gender</th>
+        <th>Organization</th>
+        <th>Title</th>
+        <th>Designation</th>
+        <th>Department</th>
+        <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for user in object_list %}
+    <tr>
+        <td>
+            {{ forloop.counter }}
+        </td>
+        <td>
+            <a href="{% url 'dl_user:manage_user_view' user.pk %}">
+                {{ user.user.first_name }}
+            </a>
+        </td>
+        <td>{{ user.user.last_name }}</td>
+        <td>{{ user.user.email }}</td>
+        <td>
+            {% if user.verified %}
+            Yes
+            {% else %}
+            No
+            <button type="button" class="btn btn-success btn-xs" aria-label="Verify" title="Manually verify email">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                Verify
+            </button>
+            {% endif %}
+        </td>
+        <td>
+            {% if user.user.is_active %}
+            Yes
+            {% else %}
+            No
+            {% if user.verified %}
+            {# Show button to activate only if user account is verified #}
+            <button type="button" class="btn btn-warning btn-xs" aria-label="Activate" title="Activate">
+                <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                Activate
+            </button>
+            {% endif %}
+            {% endif %}
+        </td>
+        <td>
+            {% if user.gender %}
+            Male
+            {% else %}
+            Female
+            {% endif %}
+        </td>
+        <td>{{ user.organization }}</td>
+        <td>{{ user.title }}</td>
+        <td>{{ user.designation }}</td>
+        <td>{{ user.department }}</td>
+        <td>{{ user.address }}</td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="9" align="center"><h3>No users yet</h3></td></tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

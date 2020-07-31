@@ -21,6 +21,7 @@ from ermisPortal import views
 urlpatterns = [
     #path('', views.index, name='index'),
     path('index.html', views.index, name='index'),
+    path('about.html', views.about, name='about'),
     path('help.html', views.help, name='help'),
     path('contact.html', views.contact, name='contact'),
     path('workshop.html', views.workshop, name='workshop'),

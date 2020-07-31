@@ -1,0 +1,24 @@
+{% extends "dl_user/base.html" %}
+{% block bootstrap3_title %}Create an account{% endblock %}
+{% block content %}
+    <h2>Registering a new account</h2>
+    <p>You are registering to the {{ settings.IDP_NAME }}</p>
+    </div>
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <b>{{ form.errors|length}}</b> error{{ form.errors|length|pluralize:" was,s were" }} found! Please fix.
+        {{ form.non_field_errors }}
+        <ul>
+		    {% for field in form %}
+			{% if field.errors %}<li><i>{{ field.label }}</i>: {{ field.errors|striptags }}</li>{% endif %}
+			{% endfor %}
+		</ul>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        {% load crispy_forms_tags %}
+        {% crispy form %}
+    </div>
+</div>
+{% endblock %}

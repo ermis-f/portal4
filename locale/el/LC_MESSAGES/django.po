@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-04-18 11:40+0000\n"
+"POT-Creation-Date: 2020-07-31 12:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,16 +37,16 @@ msgid "Flood Maps"
 msgstr "Πλημμυρικοί Χάρτες"
 
 #: templates/base.html:18 templates/ermis_base.html:62
-#: templates/ermis_base2.html:66
+#: templates/ermis_base2.html:66 templates/index.html:39
 msgid "Knowledge Base"
 msgstr "Βάση Γνώσης"
 
 #: templates/base.html:19 templates/ermis_base.html:66
-#: templates/ermis_base2.html:67
+#: templates/ermis_base2.html:67 templates/index.html:45
 msgid "Crowdsourcing"
 msgstr "Πληθοπορισμός"
 
-#: templates/base.html:20
+#: templates/base.html:20 templates/index.html:51
 msgid "Geoportal"
 msgstr "Γεωπύλη"
 
@@ -140,6 +140,88 @@ msgstr ""
 #: templates/ermis_base2.html:83
 msgid "Admin"
 msgstr "Διαχείριση"
+
+#: templates/index.html:35
+msgid "Flood hazard maps"
+msgstr "Πλημμυρικοί Χάρτες"
+
+#: templates/index.html:37
+msgid ""
+"Flood hazard maps show areas of Potentially Severe Flood Risk and depict "
+"flood zones. They concern us all and you can see if your home, your field or "
+"some point of interest is in an area with a higher risk of flooding."
+msgstr ""
+"Οι χάρτες πλημμυρικής επικινδυνότητας, δείχνουν τις περιοχές Δυνητικού "
+"Σοβαρού Κινδύνου Πλημμύρας και απεικονίζουν τις πλημμυρικές ζώνες. Μας "
+"αφορούν όλους, και μπορείτε να δείτε εάν το σπίτι σας, το χωράφι σας ή "
+"κάποιο σημείο ενδιαφέροντος σας, βρίσκεται σε περιοχή με μεγαλύτερο κίνδυνο "
+"πλημμύρας."
+
+#: templates/index.html:41
+msgid ""
+"Knowledge Base offers a structured set of information for managing flood "
+"events and their effects. Its content covers a range of information, from "
+"legislation, past flood event, flood control measures and good practices in "
+"their application, to related public authorities and software that can be "
+"applied to studies and projects."
+msgstr ""
+"Η Βάση Γνώσης προσφέρει ένα δομημένο σύνολο από πληροφορίες για την "
+"διαχείριση πλημμυρικών φαινομένων και των επιπτώσεων τους. Το περιεχόμενο "
+"της καλύπτει ένα εύρος από νομοθεσία, αντιπλημμυρικά μέτρα και καλές "
+"πρακτικές εφαρμογής τους, ιστορικές πλημμύρες έως σχετιζόμενους φορείς και "
+"λογισμικά που μπορούν να εφαρμοσθούν σε μελέτες και έργα."
+
+#: templates/index.html:47
+msgid ""
+"The Crowdsourcing application provides all citizens (users of ERMIS-F) the "
+"opportunity to share a flood event and its effects through photos (with geo-"
+"reporting), in real time! The relevant authorities can have real-time data "
+"through citizen-user reports."
+msgstr ""
+"Η εφαρμογή Πληθοπορισμού παρέχει σε όλους τους πολίτες (χρήστες της "
+"υπηρεσίας) την δυνατότητα να μοιράζονται ένα πλημμυρικό γεγονός και τις "
+"επιπτώσεις του μέσω φωτογραφιών (με γεω-αναφορά), σε πραγματικό χρόνο!  Οι "
+"αρμόδιες υπηρεσίες μπορούν να έχουν δεδομένα σε πραγματικό χρόνο μέσα από "
+"τις αναφορές των πολιτών- χρηστών."
+
+#: templates/index.html:53
+msgid ""
+"ERMIS-F’s Geoportal is a collection of geospatial data related to flood "
+"risk. It allows you to search for geospatial data and view it in a WebGIS "
+"environment, download local copies of available data, browse ready-made "
+"flood risk maps, and create your own cartographic representations with a "
+"combination of themed layers, such as risk maps, risk zones, residential "
+"developments, etc."
+msgstr ""
+"Η Γεωπύλη ERMIS-F είναι ένας κατάλογος γεω-χωρικών δεδομένων που σχετίζονται "
+"με τον πλημμυρικό κίνδυνο. Σας επιτρέπει να: αναζητήσετε γεω-χωρικά δεδομένα "
+"και να τα προβάλλεται σε περιβάλλον WebGIS, να λάβετε αντίγραφα τοπικά των "
+"διαθέσιμων δεδομένων, να περιηγηθείτε σε έτοιμους χάρτες πλημμυρικής "
+"επικινδυνότητας και να δημιουργήσετε τις δικές σας χαρτογραφικές συνθέσεις "
+"με συνδυασμό θεματικών επιπέδων (layers), όπως χάρτες επικινδυνότητας, ζώνες "
+"κινδύνου, οικιστικής ανάπτυξης κα., να αναζητήσετε…"
+
+#: templates/index.html:57
+msgid "Social Network"
+msgstr "Κοινωνική Δικτύωση"
+
+#: templates/index.html:59
+msgid "Social Network Application..."
+msgstr ""
+"Η Εφαρμογή Κοινωνικής Δικτύωσης αποτελεί μια πλατφόρμα ενημέρωσης και "
+"επικοινωνίας τοπικών φορέων και πολιτών σε θέματα που αφορούν πλημμύρες και "
+"ειδικότερα τη διαχείριση του πλημμυρικού κινδύνου σε τοπικό επίπεδο"
+
+#: templates/index.html:61
+msgid "Early Warning System"
+msgstr "Σύστημα Έγκαιρης Προειδοποίησης"
+
+#: templates/index.html:63
+msgid "Early Warning System..."
+msgstr ""
+"Το Σύστημα Έγκαιρης Προειδοποίησης απευθύνεται σε εξουσιοδοτημένους φορείς, "
+"που έχουν την ευθύνη λήψης αποφάσεων και συντονισμού δράσεων, σε τοπικό και "
+"εθνικό επίπεδο."
 
 #~ msgid "Sign in to ERMIS-F Service"
 #~ msgstr "Συνδεθείτε στην Υπηρεσία ERMIS-F"

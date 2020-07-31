@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block styles %}
+<style type="text/css">
+
+.col-md-2 {
+    max-width: 99.666667%;
+}
+
+.form-horizontal{
+   width: 99%;
+}
+</style>
+{% endblock styles %}
+
+{% block content %}
+    <div class="wrapper row2" style="margin-left:5%; width:60%">
+    <div id="container" class="clear">
+	    <h3>{% trans "Edit your Profile" %}</h3>
+    <br/>
+    {% if message %}
+ 
+    <div class="alert alert-info">{{ message|urlize }}</div>
+  
+{% endif %}
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <b>{{ form.errors|length}}</b> error{{ form.errors|length|pluralize:" was,s were" }} found! Please fix.
+        {{ form.non_field_errors }}
+        <ul>
+		    {% for field in form %}
+		    {% if field.errors %}<li><i>{{ field.label }}</i>: {{ field.errors|striptags }}</li>{% endif %}
+			{% endfor %}
+		</ul>
+    </div>
+    {% endif %}
+
+    <div class="row">
+        {% load crispy_forms_tags %}
+        {% crispy form %}
+    </div>
+    <div class="row" style="margin-top:5px;">
+	    <a href="/user/password/reset/">{% trans "Change your password" %}</a>
+    </div>
+    <br/>
+    <div class="row" style="margin-top:5px; padding-bottom:15px">
+	    <a href="/user/delete/" onclick="return confirm({% trans "'Are you sure you want to delete your account? \r\nIF YOU PRESS OK, YOUR ACCESS TO ERMIS-F RESTRICTED SERVICES WILL BE LOST!'"%});">{% trans "Delete your account" %}</a>
+   </div>
+    
+
+	</div>
+  </div>
+{% endblock %}
