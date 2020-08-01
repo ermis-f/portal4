@@ -51,6 +51,8 @@ class UserRegisterForm(forms.Form):
     email = forms.EmailField(required=True)
     password = forms.CharField(widget=forms.PasswordInput, min_length=6,label=_('Password'))
     password1 = forms.CharField(widget=forms.PasswordInput, min_length=6, label=_('Confirm Password'))
+    #terms = forms.CharField(required=False,disabled=True,widget=forms.Textarea(attrs={"rows":5, "cols":20}),label='',initial=_('Terms'))
+    accept = forms.BooleanField(required=True, label=_("I have read and accept the <a href='/static/policy.pdf' target=new>privacy policy</a>"))
     # hide captcha field during unit tests
     if not settings.TESTING:
         captcha = ReCaptchaField()
@@ -86,6 +88,7 @@ class UserRegisterForm(forms.Form):
         if "Address" in settings.LDAP_USER_DATA:
             self.helper.layout.append(
                                       Fieldset('Address', 'address', 'country'))
+        self.helper.layout.append(Fieldset('Policy','accept'))
         if settings.RECAPTCHA_PUBLIC_KEY and settings.RECAPTCHA_PRIVATE_KEY is not None:
             self.helper.layout.append(
                                       Fieldset('Spam control', 'captcha'))

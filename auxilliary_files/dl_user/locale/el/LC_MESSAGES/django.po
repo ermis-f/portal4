@@ -70,3 +70,12 @@ msgstr "Διαγράψτε τον λογαριασμό σας"
 
 msgid "'Are you sure you want to delete your account? \r\nIF YOU PRESS OK, YOUR ACCESS TO ERMIS-F RESTRICTED SERVICES WILL BE LOST!'"
 msgstr "'Είστε σίγουροι ότι θέλετε να διαγράψετε τον λογαριασμό σας; \r\nΑΝ ΠΑΤΗΣΕΤΕ ΟΚ, Η ΠΡΟΣΒΑΣΗ ΣΕ ΥΠΗΡΕΣΙΕΣ ΤΟΥ ERMIS-F ΘΑ ΧΑΘΕΙ!'"
+
+
+msgid "" 
+ "I have read and accept the <a href='/static/policy.pdf' "
+ "target=new>privacy policy</a>"
+msgstr ""
+  "Έχω διαβάσει και αποδέχομαι την <a href='/static/policy.pdf' "
+  "target=new>Πολιτική Προστασίας Δεδομένων</a>"
+

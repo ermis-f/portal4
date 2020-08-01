@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-07-31 12:07+0000\n"
+"POT-Creation-Date: 2020-08-01 14:02+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: auxilliary_files/crispy_forms/tests/test_form_helper.py:140
+#: auxilliary_files/crispy_forms/tests/test_form_helper.py:150
+msgid "This field is required."
+msgstr ""
+
+#: auxilliary_files/crispy_forms/tests/test_layout.py:355
+msgid "i18n text"
+msgstr ""
+
+#: auxilliary_files/crispy_forms/tests/test_layout.py:357
+msgid "i18n legend"
+msgstr ""
+
+#: auxilliary_files/crispy_forms/tests/test_layout_objects.py:127
+msgid "Enter a valid value."
+msgstr ""
 
 #: ermisAuth/settings.py:291
 msgid "English"
@@ -222,6 +239,13 @@ msgstr ""
 "Το Σύστημα Έγκαιρης Προειδοποίησης απευθύνεται σε εξουσιοδοτημένους φορείς, "
 "που έχουν την ευθύνη λήψης αποφάσεων και συντονισμού δράσεων, σε τοπικό και "
 "εθνικό επίπεδο."
+
+#~ msgid ""
+#~ "I have read and accept the <a href='/static/policy.pdf' "
+#~ "target=new>privacy policy</a>"
+#~ msgstr ""
+#~ "Εχω διαβάσει και αποδέχομαι την <a href='/static/policy.pdf' "
+#~ "target=new>Πολιτική Προστασίας Δεδομένων</a>"
 
 #~ msgid "Sign in to ERMIS-F Service"
 #~ msgstr "Συνδεθείτε στην Υπηρεσία ERMIS-F"
